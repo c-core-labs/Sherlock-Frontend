@@ -1,22 +1,25 @@
+// React / Redux
+import { useState } from 'react';
+import defaultStore from './redux/store'
+import { Provider } from 'react-redux'
+
+// Appbase.io ES
+import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
+import { es_url, es_key, es_index, es_type } from './config'
+
+// Components
+import ReactiveMapContainer from './containers/MapContainer'
+import Results from './components/Results'
+
+// Style /  MUI
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Hidden } from '@material-ui/core';
+import { Grid, Hidden} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { pink } from '@material-ui/core/colors';
-import Map from '../components/Map'
-
-// Icons
-import MapIcon from '@material-ui/icons/Map';
-import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
 
 
-// const setDocHeight = () => {
-//   document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
-// }
-// window.addEventListener('resize', setDocHeight)
-// window.addEventListener('orientationchange', setDocHeight)
-
-
+// TODO: Move to theme file
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -51,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#F9F9F9',
     height: window.innerHeight,
     maxHeight: 'calc(100vh)',
-    height: '100vh',
+    // height: '100vh',
     // height: `calc(var(--vh, 1vh) * 100)`,
     overflow: 'auto',
     order: 1,
@@ -99,11 +102,30 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function App() {
+  const [currentTopics, setTopics] = useState([])
+
+	const toggleTopic = (topic) => {
+		const nextState = currentTopics.includes(topic)
+			    ? currentTopics.filter(item => item !== topic)
+			    : currentTopics.concat(topic);
+		setTopics(nextState)
+  }
+  
   // setDocHeight()
   const classes = useStyles();
   return (
+    <Provider store={defaultStore}>
     <div className={classes.root}>
       <main className={classes.content}>
+        <ReactiveBase
+          url={es_url}
+          app={es_index}
+          credentials={es_key}
+          type={es_type}
+          // theme={theme}
+          enableAppbase={true}
+        >
+
         <Grid
           container
           spacing={0}
@@ -114,19 +136,12 @@ function App() {
         >
           <Hidden smDown>
             <Grid item className={classes.mapWindow} xs={12} sm>
-              {/* map component */}
-                <Map />
-              {/* <Hidden smUp>
-                <Avatar className={classes.avatar}>
-                  <VerticalAlignTopIcon/>
-                </Avatar>
-              </Hidden> */}
+                <ReactiveMapContainer />
             </Grid>
           </Hidden>
           <Grid item className={classes.resultsWindow}>
             <Grid container item className={classes.resultsHeaderBar}>
               <Grid item className={classes.coreLogo}>
-                {/* Logo */}
                 <img src="c-core-labs-logo.png" alt="C-Core Labs Logo" />
               </Grid>
               <Grid item>
@@ -134,17 +149,33 @@ function App() {
                 </Avatar>
               </Grid>
             </Grid>
-            {/* <Hidden smUp>
-              <Avatar className={classes.resultsAvatar}>
-                <MapIcon/>
-              </Avatar>
-            </Hidden> */}
-
+            <DataSearch
+							  componentId="repo"
+							  filterLabel="Search"
+							  dataField={[
+                  'properties.title',
+                  'properties.description',
+                  'properties.title.raw',
+                  'properties.keywords'
+                ]}
+                // dataField='properties.title'
+							  placeholder="Search STAC"
+							  iconPosition="left"
+							  autosuggest={true}
+                debounce={300}
+							  URLParams
+							  className="data-search-container results-container"
+							  innerClass={{
+								  input: 'search-input',
+							  }}
+						  />
+            <Results currentTopics={currentTopics} toggleTopic={toggleTopic} />
           </Grid>
         </Grid>
+        </ReactiveBase>
       </main>
-      
     </div>
+    </Provider>
   )
 }
 
