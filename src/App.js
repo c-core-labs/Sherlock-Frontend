@@ -136,6 +136,7 @@ function App() {
         >
           <Hidden smDown>
             <Grid item className={classes.mapWindow} xs={12} sm>
+                {/* TODO Merge reactive map container and mapcontainer */}
                 <ReactiveMapContainer />
             </Grid>
           </Hidden>
@@ -149,6 +150,7 @@ function App() {
                 </Avatar>
               </Grid>
             </Grid>
+            {/* TODO Move this into SearchContainer */}
             <DataSearch
 							  componentId="repo"
 							  filterLabel="Search"
