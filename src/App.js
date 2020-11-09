@@ -8,7 +8,7 @@ import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import { es_url, es_key, es_index, es_type } from './config'
 
 // Components
-import ReactiveMapContainer from './containers/MapContainer'
+import ReactiveMapContainer from './containers/ReactiveMapContainer'
 import Results from './components/Results'
 
 // Style /  MUI
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     // height: `calc(var(--vh, 1vh) * 100)`,
     order: 2,
     [theme.breakpoints.up('sm')]: {
-      order: 1, 
+      order: 1,
     },
     maxWidth: window.innerWidth,
     maxheight: window.innerHeight
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     order: 1,
     [theme.breakpoints.up('sm')]: {
-      order: 2, 
+      order: 2,
     },
     // maxWidth: window.innerWidth
   },
@@ -110,7 +110,7 @@ function App() {
 			    : currentTopics.concat(topic);
 		setTopics(nextState)
   }
-  
+
   // setDocHeight()
   const classes = useStyles();
   return (
