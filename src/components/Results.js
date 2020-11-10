@@ -14,7 +14,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex'
+    color: 'yellow'
   }
 })
 
@@ -24,15 +24,13 @@ const onResultStats = (results, time) => (
   </div>
 )
 
-const onData = (data, currentTopics, toggleTopic) => {
-  const classes = useStyles()
+const onData = (data, currentTopics, toggleTopic, classes) => {
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
-      className = {classes.root}
         avatar={
           <Avatar aria-label="">
-            
+
           </Avatar>
         }
         action={
@@ -104,14 +102,16 @@ const onData = (data, currentTopics, toggleTopic) => {
   )
 }
 
-const Results = ({ toggleTopic, currentTopics }) => (
-  
-  <div className='result-list'>
+function Results ({ toggleTopic, currentTopics }) {
+  const classes = useStyles()
+  return (
+
+    <div className='result-list'>
     <SelectedFilters className='m1' />
     <ReactiveList
       componentId='results'
       dataField='name'
-      renderItem={data => onData(data, currentTopics, toggleTopic)}
+      renderItem={data => onData(data, currentTopics, toggleTopic, classes)}
       onResultStats={onResultStats}
       // TODO: don't need all of these:
       react={{
@@ -136,7 +136,8 @@ const Results = ({ toggleTopic, currentTopics }) => (
       sortOptions={sortOptions}
     />
   </div>
-)
+  )
+}
 
 Results.propTypes = {
   toggleTopic: PropTypes.func,
