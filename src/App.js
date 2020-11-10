@@ -2,9 +2,10 @@
 import { useState } from 'react';
 import defaultStore from './redux/store'
 import { Provider } from 'react-redux'
+import clsx from 'clsx'
 
 // Appbase.io ES
-import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
+import { ReactiveBase, DataSearch, DateRange } from '@appbaseio/reactivesearch';
 import { es_url, es_key, es_index, es_type } from './config'
 
 // Components
@@ -12,12 +13,12 @@ import ReactiveMapContainer from './containers/ReactiveMapContainer'
 import Results from './components/Results'
 
 // Style /  MUI
-import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Hidden} from '@material-ui/core';
+import { Box, Grid, Hidden, Typography} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { pink } from '@material-ui/core/colors';
-
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import themeVars from './theme'
 
 // TODO: Move to theme file
 const useStyles = makeStyles((theme) => ({
@@ -30,18 +31,46 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     // height: `calc(var(--vh, 1vh) * 100)`
   },
-  searchToolbar: {
+  // Base Styles
+  flexMiddle: {
+    display: 'flex',
+    alignItems: 'middle',
+    flexDirection: 'row'
+  },
+  xSmallPadding: {
+    padding: themeVars.xSmallPadding,
+  },
+  xSmallIcon: {
+    fontSize: themeVars.textIconSize,
+    color: themeVars.primaryIconColour,
+    marginRight: '5px'
+  },
+  mapHeaderContainer: {
+    width: 'calc(100vw - 670px)',
+    position: 'absolute',
+    // height: '70px',
+    zIndex: '1000',
+    margin: '10px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    background: themeVars.boxBg,
+    borderRadius: themeVars.borderRadius
 
   },
-  resultsToolbar: {
-
+  /** STAC Search Container */
+  mapHeaderSearchContainer: {
+    width: '30%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '8px'
   },
   mapWindow: {
     width: 'auto',
     flexGrow: 1,
-    height: '100vh',
-    // height: `calc(var(--vh, 1vh) * 100)`,
+    height: 'calc(100vh)',
     order: 2,
+    // TODO: Likely remove, no map on small screen size.
     [theme.breakpoints.up('sm')]: {
       order: 1,
     },
@@ -52,16 +81,18 @@ const useStyles = makeStyles((theme) => ({
     width: '650px',
     maxWidth: '100%',
     backgroundColor: '#F9F9F9',
-    height: window.innerHeight,
-    maxHeight: 'calc(100vh)',
-    // height: '100vh',
-    // height: `calc(var(--vh, 1vh) * 100)`,
-    overflow: 'auto',
+    height: '100vh',
+    overflow: 'Hidden',
+    maxHeight: '100vh',
     order: 1,
+    // TODO: Likely remove, no map on small screen size.
     [theme.breakpoints.up('sm')]: {
       order: 2,
     },
-    // maxWidth: window.innerWidth
+  },
+  resultsSubWindow: {
+    overflow: 'auto',
+    height: 'calc(100vh - 100px)'
   },
   avatar: {
     boxShadow: theme.shadows[5],
@@ -136,8 +167,44 @@ function App() {
         >
           <Hidden smDown>
             <Grid item className={classes.mapWindow} xs={12} sm>
-                {/* TODO Merge reactive map container and mapcontainer */}
-                <ReactiveMapContainer />
+              <Box className={classes.mapHeaderContainer}>
+
+                <Box className={classes.mapHeaderSearchContainer}>
+                  <Box className={ clsx(classes.flexMiddle)}>
+                    <DateRangeIcon className={classes.xSmallIcon} />
+                    <Typography variant="caption" color="initial">Search term or location</Typography>
+                  </Box>
+                  <DataSearch
+                    componentId="repo"
+                    filterLabel="Search"
+                    dataField={[
+                      'properties.title',
+                      'properties.description',
+                      'properties.title.raw',
+                      'properties.keywords'
+                    ]}
+                    placeholder="Search STAC"
+                    iconPosition="left"
+                    autosuggest={true}
+                    debounce={300}
+                    URLParams
+                    // TODO: Create classes for form inputs.
+                    className="data-search-container results-container"
+                    innerClass={{
+                      input: 'search-input',
+                    }}
+                  />
+                </Box>
+                <Box className={classes.mapHeaderSearchContainer}>
+                  <Box className={ clsx(classes.flexMiddle)}>
+                    <DateRangeIcon className={classes.xSmallIcon} />
+                    <Typography variant="caption" color="initial">Select a date or date range</Typography>
+                  </Box>
+                    <DateRange componentId="DateSensor" dataField="timestamp" />
+                </Box>
+              </Box>
+              {/* TODO Merge ReactiveMapContainer and MapContainer */}
+              <ReactiveMapContainer />
             </Grid>
           </Hidden>
           <Grid item className={classes.resultsWindow}>
@@ -151,27 +218,9 @@ function App() {
               </Grid>
             </Grid>
             {/* TODO Move this into SearchContainer */}
-            <DataSearch
-							  componentId="repo"
-							  filterLabel="Search"
-							  dataField={[
-                  'properties.title',
-                  'properties.description',
-                  'properties.title.raw',
-                  'properties.keywords'
-                ]}
-                // dataField='properties.title'
-							  placeholder="Search STAC"
-							  iconPosition="left"
-							  autosuggest={true}
-                debounce={300}
-							  URLParams
-							  className="data-search-container results-container"
-							  innerClass={{
-								  input: 'search-input',
-							  }}
-						  />
-            <Results currentTopics={currentTopics} toggleTopic={toggleTopic} />
+            <Grid item className={classes.resultsSubWindow}>
+              <Results currentTopics={currentTopics} toggleTopic={toggleTopic} />
+            </Grid>
           </Grid>
         </Grid>
         </ReactiveBase>
