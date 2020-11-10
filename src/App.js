@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: themeVars.boxBg,
     borderRadius: themeVars.borderRadius
-
   },
   /** STAC Search Container */
   mapHeaderSearchContainer: {
@@ -88,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     // TODO: Likely remove, no map on small screen size.
     [theme.breakpoints.up('sm')]: {
       order: 2,
-    },
+    }
   },
   resultsSubWindow: {
     overflow: 'auto',
