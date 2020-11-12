@@ -1,26 +1,28 @@
-import { Card, CardContent, makeStyles } from '@material-ui/core'
+import { Card, CardContent, makeStyles, Typography } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import CardMedia  from '@material-ui/core/CardMedia'
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
-  }
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  thumbnail: {
+    width: 120
+  },
+
 }))
 
 const ResultItem = (props) => {
   const classes = useStyles()
+  const data = props.data
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="">
-            
-          </Avatar>
-        }
         action={
           <IconButton aria-label="">
             <MoreVertIcon />
@@ -30,7 +32,13 @@ const ResultItem = (props) => {
         subheader=""
         
       />
+      <CardMedia
+        className={classes.thumbnail}
+        image=""
+        title=""
+      />
       <CardContent>
+        <Typography variant="p" color="initial">{data.properties.title}</Typography>
       </CardContent>
     </Card>
   )

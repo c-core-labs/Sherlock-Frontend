@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { SelectedFilters, ReactiveList } from '@appbaseio/reactivesearch'
-import { sortOptions } from './constants'
+import { sortOptions } from '../components/constants'
 
-import ResultItem from './ResultItem'
+import ResultItem from '../components/ResultItem'
 
 const onResultStats = (results, time) => (
   <div className='flex justify-end'>

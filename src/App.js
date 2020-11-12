@@ -10,7 +10,7 @@ import { es_url, es_key, es_index, es_type } from './config'
 
 // Components
 import ReactiveMapContainer from './containers/ReactiveMapContainer'
-import Results from './components/Results'
+import ResultsContainer from './containers/ResultsContainer'
 
 // Style /  MUI
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,7 +18,7 @@ import { Box, Grid, Hidden, Typography} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { pink } from '@material-ui/core/colors';
 import DateRangeIcon from '@material-ui/icons/DateRange';
-import themeVars from './theme'
+import { themeVariables } from './theme'
 
 // TODO: Move to theme file
 const useStyles = makeStyles((theme) => ({
@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row'
   },
   xSmallPadding: {
-    padding: themeVars.xSmallPadding,
+    padding: themeVariables.xSmallPadding,
   },
   xSmallIcon: {
-    fontSize: themeVars.textIconSize,
-    color: themeVars.primaryIconColour,
+    fontSize: themeVariables.textIconSize,
+    color: themeVariables.primaryIconColour,
     marginRight: '5px'
   },
   mapHeaderContainer: {
@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    background: themeVars.boxBg,
-    borderRadius: themeVars.borderRadius
+    background: themeVariables.boxBg,
+    borderRadius: themeVariables.borderRadius
   },
   /** STAC Search Container */
   mapHeaderSearchContainer: {
@@ -218,7 +218,7 @@ function App() {
             </Grid>
             {/* TODO Move this into SearchContainer */}
             <Grid item className={classes.resultsSubWindow}>
-              <Results currentTopics={currentTopics} toggleTopic={toggleTopic} />
+              <ResultsContainer currentTopics={currentTopics} toggleTopic={toggleTopic} />
             </Grid>
           </Grid>
         </Grid>

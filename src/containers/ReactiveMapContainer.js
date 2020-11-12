@@ -10,7 +10,6 @@ function ReactiveMapContainer () {
   const hits = reactiveContext.storeState.hits.results
     ? reactiveContext.storeState.hits.results.hits
     : []
-  console.log("RMC: ", reactiveContext)
   const items = hits.map(hit => {
     const item = { ...hit._source, _id: hit._id }
     return item

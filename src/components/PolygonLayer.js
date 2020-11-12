@@ -1,12 +1,12 @@
 import { Layer, Source } from 'react-map-gl'
 import React from 'react'
-import themeVars from '../theme'
+import { mapVariables } from '../theme'
 
 const defaultPaint = {
   // 'line-color': 'blue',
   // 'line-opacity': 0.7,
-  'fill-color': themeVars.mapFillColour,
-  'fill-opacity': themeVars.mapFillOpacity
+  'fill-color': mapVariables.mapFillColour,
+  'fill-opacity': mapVariables.mapFillOpacity
 }
 
 function PolygonLayer ({
