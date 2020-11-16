@@ -199,7 +199,7 @@ function App() {
                     <DateRangeIcon className={classes.xSmallIcon} />
                     <Typography variant="caption" color="initial">Select a date or date range</Typography>
                   </Box>
-                    <DateRange componentId="DateSensor" dataField="timestamp" />
+                    <DateRange componentId="DateSensor" dataField="datetime" />
                 </Box>
               </Box>
               {/* TODO Merge ReactiveMapContainer and MapContainer */}

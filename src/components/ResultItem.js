@@ -1,10 +1,10 @@
 import { Card, CardContent, makeStyles, Typography } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import CardMedia  from '@material-ui/core/CardMedia'
+import CardMedia from '@material-ui/core/CardMedia'
 
+import ItemKeywords from './ItemKeywords'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +34,12 @@ const ResultItem = (props) => {
       />
       <CardMedia
         className={classes.thumbnail}
-        image=""
+        image="./blank.png"
         title=""
       />
       <CardContent>
-        <Typography variant="p" color="initial">{data.properties.title}</Typography>
+        <Typography variant="body1" color="initial">{data.properties.title}</Typography>
+        <ItemKeywords data={data.properties.keywords} key={data.id}/>
       </CardContent>
     </Card>
   )

@@ -1,6 +1,6 @@
-const primary = 'blue'
-const secondary = '#54B1E9'
-const highlight = 'yellow'
+export const primary = 'blue'
+export const secondary = '#54B1E9'
+export const highlight = 'yellow'
 
 export const themeVariables = {
     xSmallPadding: '5px',
