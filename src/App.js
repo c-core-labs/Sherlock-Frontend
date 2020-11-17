@@ -167,7 +167,6 @@ function App() {
           <Hidden smDown>
             <Grid item className={classes.mapWindow} xs={12} sm>
               <Box className={classes.mapHeaderContainer}>
-
                 <Box className={classes.mapHeaderSearchContainer}>
                   <Box className={ clsx(classes.flexMiddle)}>
                     <DateRangeIcon className={classes.xSmallIcon} />
@@ -199,7 +198,7 @@ function App() {
                     <DateRangeIcon className={classes.xSmallIcon} />
                     <Typography variant="caption" color="initial">Select a date or date range</Typography>
                   </Box>
-                    <DateRange componentId="DateSensor" dataField="datetime" />
+                    <DateRange componentId="DateSensor" dataField="datetime" showFilter={true} showClear={true} URLParams={true} queryFormat="date_time_no_millis" />
                 </Box>
               </Box>
               {/* TODO Merge ReactiveMapContainer and MapContainer */}

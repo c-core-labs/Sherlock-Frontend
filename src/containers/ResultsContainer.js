@@ -18,19 +18,12 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
     <ReactiveList
       componentId='results'
       dataField='name'
-      // renderItem={data => onData(data, currentTopics, toggleTopic)}
       renderItem={(data) => <ResultItem data={data} key={data.id} />}
       onResultStats={onResultStats}
-      // TODO: don't need all of these:
       react={{
         and: [
-          'language',
-          'topics',
-          'pushed',
-          'created',
-          'stars',
-          'forks',
-          'repo'
+          'repo',
+          'DateSensor'
         ]
       }}
       pagination
