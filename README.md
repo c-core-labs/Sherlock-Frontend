@@ -1,3 +1,9 @@
+# Sherlock Frontend
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/791fc191-034c-429e-b604-19e1f265d1ac/deploy-status)](https://app.netlify.com/sites/sherlock-frontend/deploys)
+
+https://sherlock-frontend.c-core.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
