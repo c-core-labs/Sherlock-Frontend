@@ -16,9 +16,10 @@ import ResultsContainer from './containers/ResultsContainer'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Hidden, Typography} from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import { pink } from '@material-ui/core/colors';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { themeVariables } from './theme'
+import './Appbase.css'
+
 
 // TODO: Move to theme file
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     height: '100vh',
-    // height: `calc(var(--vh, 1vh) * 100)`
   },
   // Base Styles
   flexMiddle: {
@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px'
   },
   mapHeaderContainer: {
-    width: 'calc(100vw - 670px)',
+    width: 'calc(100vw - 662px)',
     position: 'absolute',
     // height: '70px',
     zIndex: '1000',
-    margin: '10px',
+    margin: '5px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -59,10 +59,10 @@ const useStyles = makeStyles((theme) => ({
   },
   /** STAC Search Container */
   mapHeaderSearchContainer: {
-    width: '30%',
+    width: '50%',
     display: 'flex',
     flexDirection: 'column',
-    padding: '8px'
+    padding: '10px 20px 12px 20px'
   },
   mapWindow: {
     width: 'auto',
@@ -91,27 +91,12 @@ const useStyles = makeStyles((theme) => ({
   },
   resultsSubWindow: {
     overflow: 'auto',
-    height: 'calc(100vh - 100px)'
-  },
-  avatar: {
-    boxShadow: theme.shadows[5],
-    top: `calc(100vh - 50px)`,
-    left: `calc(100% - 50px)`,
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[500]
-  },
-  resultsAvatar: {
-    boxShadow: theme.shadows[5],
-    // top: `calc(100vh - 50px)`,
-    left: `calc(100% - 50px)`,
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[500],
-    top: `calc(100vh - 150px)`
+    height: `calc(100vh - ${themeVariables.headerHeight})`
   },
   resultsHeaderBar: {
     backgroundColor: '#fff',
     width: '100%',
-    height: '100px',
+    height: themeVariables.headerHeight,
     display: 'flex',
     flexWrap: 'no-wrap',
     flexDirection: "row",
@@ -125,8 +110,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '0px 15px'
   },
   resultsHeaderAvatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+    width: theme.spacing(6),
+    height: theme.spacing(6),
   }
 
 }))
@@ -186,19 +171,27 @@ function App() {
                     autosuggest={true}
                     debounce={300}
                     URLParams
-                    // TODO: Create classes for form inputs.
-                    className="data-search-container results-container"
+                    className="es-form"
                     innerClass={{
-                      input: 'search-input',
+                      input: 'form-search',
                     }}
                   />
+
                 </Box>
                 <Box className={classes.mapHeaderSearchContainer}>
                   <Box className={ clsx(classes.flexMiddle)}>
                     <DateRangeIcon className={classes.xSmallIcon} />
                     <Typography variant="caption" color="initial">Select a date or date range</Typography>
                   </Box>
-                    <DateRange componentId="DateSensor" dataField="datetime" showFilter={true} showClear={true} URLParams={true} queryFormat="date_time_no_millis" />
+                    <DateRange 
+                      componentId="DateSensor" 
+                      dataField="datetime" 
+                      showFilter={true} 
+                      showClear={true} 
+                      URLParams={true} 
+                      queryFormat="date_time_no_millis" 
+                      className="es-form" 
+                      />
                 </Box>
               </Box>
               {/* TODO Merge ReactiveMapContainer and MapContainer */}
