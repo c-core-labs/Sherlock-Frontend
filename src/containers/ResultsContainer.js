@@ -4,6 +4,7 @@ import { SelectedFilters, ReactiveList } from '@appbaseio/reactivesearch'
 import { sortOptions } from '../components/constants'
 
 import ResultItem from '../components/ResultItem'
+import '../Appbase.css'
 
 const onResultStats = (results, time) => (
   <div className='flex justify-end'>

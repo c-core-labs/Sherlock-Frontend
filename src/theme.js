@@ -8,14 +8,11 @@ export const themeVariables = {
     primaryIconColour: secondary,
     borderRadius: 4,
     boxBg: '#ffffff',
+    headerHeight: '80px'
 }
 
 export const mapVariables = {    // Map Variables
     mapFillOpacity: 0.3,
     mapFillColour: secondary
     
-}
-
-export const theme = {
-
 }
