@@ -29,7 +29,6 @@ const ItemKeywords = (props) => {
         <li key={index}>
         <Chip
           className={classes.chip}
-          // color="primary"
           label={keyword}
           clickable
         />
