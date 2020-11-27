@@ -2,7 +2,6 @@ import React from 'react'
 import { RangeSlider } from '@appbaseio/reactivesearch';
 import { makeStyles, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { typography } from 'material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
