@@ -11,6 +11,7 @@ import { es_url, es_key, es_index, es_type } from './config'
 // Components
 import ReactiveMapContainer from './containers/ReactiveMapContainer'
 import ResultsContainer from './containers/ResultsContainer'
+import CloudCover from './components/CloudCoverFilter'
 
 // Style /  MUI
 import { makeStyles } from '@material-ui/core/styles';
@@ -46,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px'
   },
   mapHeaderContainer: {
-    width: 'calc(100vw - 662px)',
+    width: 'calc(100vw - 666px)',
     position: 'absolute',
     // height: '70px',
     zIndex: '1000',
-    margin: '5px',
+    margin: theme.spacing(1),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -210,6 +211,7 @@ function App() {
             </Grid>
             {/* TODO Move this into SearchContainer */}
             <Grid item className={classes.resultsSubWindow}>
+              <CloudCover />
               <ResultsContainer currentTopics={currentTopics} toggleTopic={toggleTopic} />
             </Grid>
           </Grid>

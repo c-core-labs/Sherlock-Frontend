@@ -24,7 +24,8 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
       react={{
         and: [
           'repo',
-          'DateSensor'
+          'DateSensor',
+          'Cloud'
         ]
       }}
       pagination
