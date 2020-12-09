@@ -4,14 +4,16 @@ import defaultStore from './redux/store'
 import { Provider } from 'react-redux'
 import clsx from 'clsx'
 
+
 // Appbase.io ES
-import { ReactiveBase, DataSearch, DateRange } from '@appbaseio/reactivesearch';
+import { ReactiveBase, DateRange } from '@appbaseio/reactivesearch';
 import { es_url, es_key, es_index, es_type } from './config'
 
 // Components
 import ReactiveMapContainer from './containers/ReactiveMapContainer'
 import ResultsContainer from './containers/ResultsContainer'
 import CloudCover from './components/CloudCoverFilter'
+import ReactiveSearchContainer from './containers/ReactiveSearchContainer'
 
 // Style /  MUI
 import { makeStyles } from '@material-ui/core/styles';
@@ -117,7 +119,10 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-function App() {
+
+
+
+const App = () => {
   const [currentTopics, setTopics] = useState([])
 
 	const toggleTopic = (topic) => {
@@ -158,26 +163,7 @@ function App() {
                     <DateRangeIcon className={classes.xSmallIcon} />
                     <Typography variant="caption" color="initial">Search term or location</Typography>
                   </Box>
-                  <DataSearch
-                    componentId="repo"
-                    filterLabel="Search"
-                    dataField={[
-                      'properties.title',
-                      'properties.description',
-                      'properties.title.raw',
-                      'properties.keywords'
-                    ]}
-                    placeholder="Search STAC"
-                    iconPosition="left"
-                    autosuggest={true}
-                    debounce={300}
-                    URLParams
-                    className="es-form"
-                    innerClass={{
-                      input: 'form-search',
-                    }}
-                  />
-
+                  <ReactiveSearchContainer />
                 </Box>
                 <Box className={classes.mapHeaderSearchContainer}>
                   <Box className={ clsx(classes.flexMiddle)}>
@@ -185,7 +171,7 @@ function App() {
                     <Typography variant="caption" color="initial">Select a date or date range</Typography>
                   </Box>
                     <DateRange 
-                      componentId="DateSensor" 
+                      componentId="DateFilter" 
                       dataField="datetime" 
                       showFilter={true} 
                       showClear={true} 

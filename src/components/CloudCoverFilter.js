@@ -1,5 +1,5 @@
 import React from 'react'
-import { RangeSlider } from '@appbaseio/reactivesearch';
+import { RangeSlider, MultiList } from '@appbaseio/reactivesearch';
 import { makeStyles, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
@@ -24,18 +24,39 @@ export default function FilterPopover() {
         <AccordionDetails>
           <Box className={classes.itemControl}>
             <Typography>Cloud Cover:</Typography>
-          <RangeSlider
-            componentId="Cloud"
-            dataField="cloudcover"
-            URLParams={true}
-            includeNullValues
-            // title="Cloud cover"
-            range={{
-                start: 0,
-                end: 100,
-            }}
-          />
-        </Box>
+            <RangeSlider
+              componentId="CloudFilter"
+              dataField="properties.cloudcover"
+              URLParams={true}
+              includeNullValues
+              // title="Cloud cover"
+              range={{
+                  start: 0,
+                  end: 100,
+              }}
+            />
+            <MultiList
+              componentId="PlatformSelect"
+              dataField="properties.platform"
+              title="Platform"
+              size={20}
+              sortBy="asc"
+              // defaultValue={['San Francisco']}
+              queryFormat="or"
+              selectAllLabel="All Platforms"
+              showCheckbox={true}
+              showCount={true}
+              showSearch={true}
+              placeholder="Filter by Satellite"
+              react={{
+                  and: ['DateFilter', 'CloudFilter', 'TextSearch'],
+              }}
+              showFilter={true}
+              filterLabel="platform"
+              URLParams={false}
+              loader="Loading ..."
+            />
+          </Box>
         </AccordionDetails>
       </Accordion> 
     </Box>

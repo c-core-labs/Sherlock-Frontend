@@ -51,6 +51,11 @@ function changeViewport (state, action) {
     return state
   }
 
+  // Get element width and height for calculation of map extent
+  const mapElement = document.getElementsByClassName('mapboxgl-map')[0]
+  const width = mapElement.offsetWidth
+  const height = mapElement.offsetHeight
+
   const nextLongitude =
     xmin && xmax ? Math.max(Math.min(xmax, longitude), xmin) : longitude
   const nextLatitude =
@@ -64,6 +69,8 @@ function changeViewport (state, action) {
       ...payload,
       longitude: nextLongitude,
       latitude: nextLatitude,
+      width: width,
+      height: height,
       zoom: nextZoom
     }
   }
