@@ -5,6 +5,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardMedia from '@material-ui/core/CardMedia'
 
 import ItemKeywords from './ItemKeywords'
+import MetaTag from './MetaTag'
 
 import '../Appbase.css'
 
@@ -22,21 +23,44 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold'
   },
   summary: {
-    height: '4em',
+    maxHeight: '4em',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
   keywordContainer: {
-    height: '90px',
+    maxHeight: '90px',
     overflow: 'hidden'
+  },
+  collectionTitle: {
+    fontSize: '0.5em',
 
+  },
+  cardContent: {
+    height: 'auto'
+  },
+  tagContainer: {
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+    margin: '4px',
+    zIndex: 1000,
+    alignContent: 'flex-start',
   }
-
 }))
-
+  
 const ResultItem = (props) => {
   const classes = useStyles()
-  const data = props.data
+
+  // TODO: This needs moving to a MetaTag Container, other tags also needed just an example.
+  const metaTypes = [
+    { icon: 'cloud', type:"icon", value: props.data.properties['eo:cloud_cover'] },
+    { icon: 'gsd', type:"icon", value: props.data.properties['gsd'] }
+  ]
+
+  const metaTags = metaTypes.filter( item => typeof(item.value) != "undefined" )
+  const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
+  const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -45,7 +69,7 @@ const ResultItem = (props) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.data.properties.title}
+        title={title()}
         subheader=""
         classes={{
           title: classes.cardHeader
@@ -56,14 +80,19 @@ const ResultItem = (props) => {
         image="./blank.png"
         title=""
       />
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Box className={classes.summary}>
-          <Typography variant="body2" color="initial" >{data.properties.description}</Typography>
+          <Typography variant="body2" color="initial">{description()}</Typography>
         </Box>
         <Box className={classes.keywordContainer}>
-          <ItemKeywords data={data.properties.keywords} key={data.id}/>
+          <ItemKeywords data={props.data.properties.keywords} key={props.data.id} />
         </Box>
       </CardContent>
+      <div className={classes.tagContainer}>
+        {metaTags.map((item, index) => {
+          return <MetaTag key={index} label={item.icon} value={item.value} /> 
+        })}
+      </div>
     </Card>
   )
 }
