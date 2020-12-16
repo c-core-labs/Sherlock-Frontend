@@ -50,7 +50,7 @@ function ReactiveSearchContainer () {
         'properties.title',
         'properties.description',
         'properties.title.raw',
-        'properties.keywords',
+        'properties.keywords'
       ]}
       queryFormat="or"
       componentId="TextSearch"
@@ -58,7 +58,7 @@ function ReactiveSearchContainer () {
       placeholder="Search STAC"
       iconPosition="left"
       autosuggest={true}
-      debounce={600}
+      debounce={300}
       URLParams
       className="es-form"
       innerClass={{
