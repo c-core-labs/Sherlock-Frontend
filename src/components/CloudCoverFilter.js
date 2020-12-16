@@ -1,7 +1,7 @@
 import React from 'react'
-import { RangeSlider, MultiList } from '@appbaseio/reactivesearch';
-import { makeStyles, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { RangeSlider } from '@appbaseio/reactivesearch';
+import { makeStyles, Box, Typography } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,50 +15,32 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterPopover() {
   const classes = useStyles();
   return (
-    <Box className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon/>}>
-          <Typography>Filters</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box className={classes.itemControl}>
-            <Typography>Cloud Cover:</Typography>
-            <RangeSlider
-              componentId="CloudFilter"
-              dataField="properties.cloudcover"
-              URLParams={true}
-              includeNullValues
-              // title="Cloud cover"
-              range={{
-                  start: 0,
-                  end: 100,
-              }}
-            />
-            <MultiList
-              componentId="PlatformSelect"
-              dataField="properties.platform"
-              title="Platform"
-              size={20}
-              sortBy="asc"
-              // defaultValue={['San Francisco']}
-              queryFormat="or"
-              selectAllLabel="All Platforms"
-              showCheckbox={true}
-              showCount={true}
-              showSearch={true}
-              placeholder="Filter by Satellite"
-              react={{
-                  and: ['DateFilter', 'CloudFilter', 'TextSearch'],
-              }}
-              showFilter={true}
-              filterLabel="platform"
-              URLParams={false}
-              loader="Loading ..."
-            />
-          </Box>
-        </AccordionDetails>
-      </Accordion> 
+    <Box className={classes.itemControl}>
+      <Typography>Cloud Cover:</Typography>
+      <RangeSlider
+        componentId="CloudFilter"
+        filterLabel="Cloud Cover"
+        dataField={"properties.eo:cloud_cover"}
+        stepValue={1}
+        showHistogram={true}
+        showFilter={true}
+        interval={2}
+        range={{
+          start: 0,
+          end: 100,
+      }}
+        rangeLabels={{
+          start: 'Start',
+          end: 'End',
+      }}
+        URLParams={true}
+        includeNullValues
+        showHistogram={true}
+        showFilter={true}
+        react={{
+          and: ['TextSearch', 'DateFilter', 'PlatformFilter']
+        }}
+      />
     </Box>
-  );
+  )
 }

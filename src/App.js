@@ -12,7 +12,7 @@ import { es_url, es_key, es_index, es_type } from './config'
 // Components
 import ReactiveMapContainer from './containers/ReactiveMapContainer'
 import ResultsContainer from './containers/ResultsContainer'
-import CloudCover from './components/CloudCoverFilter'
+import FilterContainer from './containers/FilterContainer'
 import ReactiveSearchContainer from './containers/ReactiveSearchContainer'
 
 // Style /  MUI
@@ -119,9 +119,6 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-
-
-
 const App = () => {
   const [currentTopics, setTopics] = useState([])
 
@@ -197,7 +194,7 @@ const App = () => {
             </Grid>
             {/* TODO Move this into SearchContainer */}
             <Grid item className={classes.resultsSubWindow}>
-              <CloudCover />
+              <FilterContainer />
               <ResultsContainer currentTopics={currentTopics} toggleTopic={toggleTopic} />
             </Grid>
           </Grid>
