@@ -15,29 +15,26 @@ export default function PlatformFilter () {
   const classes = useStyles()
   return (
     <Box className={classes.itemControl}>
-        <Typography>Cloud Cover:</Typography>
-
-        <MultiList
-        componentId="PlatformSelect"
+      <Typography>Platform:</Typography>
+      <MultiList
+        componentId="PlatformFilter"
         dataField="properties.platform"
-        title="Platform"
+        // title="Platform"
         size={20}
         sortBy="asc"
-        // defaultValue={['San Francisco']}
         queryFormat="or"
         selectAllLabel="All Platforms"
         showCheckbox={true}
         showCount={true}
         showSearch={true}
-        placeholder="Filter by Satellite"
+        placeholder="Filter by Platform"
         react={{
             and: ['DateFilter', 'CloudFilter', 'TextSearch'],
         }}
         showFilter={true}
-        filterLabel="platform"
         URLParams={false}
         loader="Loading ..."
-    />
+      />
     </Box>        
- )
+  )
 }

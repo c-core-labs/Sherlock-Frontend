@@ -26,10 +26,11 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
           'TextSearch',
           'DateFilter',
           'CloudFilter',
+          'PlatformFilter'
         ]
       }}
       pagination
-      size={6}
+      size={20}
       sortOptions={sortOptions}
     />
   </div>
