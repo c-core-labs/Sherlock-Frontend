@@ -35,8 +35,6 @@ export default function FilterPopover() {
       }}
         URLParams={true}
         includeNullValues
-        showHistogram={true}
-        showFilter={true}
         react={{
           and: ['TextSearch', 'DateFilter', 'PlatformFilter']
         }}
