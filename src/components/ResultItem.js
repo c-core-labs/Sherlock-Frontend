@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // MUI
@@ -86,9 +86,10 @@ const ResultItem = (props) => {
     }
   }
 
-  const handleSelect = useCallback((item)=> {
-    // dispatch(mapDuck.actions.setHighlightedItem(item))
-  }, [dispatch])
+  const handleSelect = (item) => {
+    // Commenting this out causes the map click functionality to work again.
+    dispatch(mapDuck.actions.setHighlightedItem(item))
+  }
 
   return (
     <Card
