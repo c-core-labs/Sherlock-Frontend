@@ -5,7 +5,8 @@ import { defaultViewport } from '../config'
 
 const initialState = {
   loading: false,
-  viewport: defaultViewport
+  viewport: defaultViewport,
+  selectedItem: null
 }
 
 // TODO: try builder callback api with flow
@@ -14,10 +15,6 @@ function setLoaded (state, action) {
   const { payload } = action
 
   state.loaded = payload
-}
-
-function changeRiver (state, action) {
-  return state
 }
 
 function setMaxBounds (state, action) {
@@ -51,11 +48,6 @@ function changeViewport (state, action) {
     return state
   }
 
-  // Get element width and height for calculation of map extent
-  const mapElement = document.getElementsByClassName('mapboxgl-map')[0]
-  const width = mapElement.offsetWidth
-  const height = mapElement.offsetHeight
-
   const nextLongitude =
     xmin && xmax ? Math.max(Math.min(xmax, longitude), xmin) : longitude
   const nextLatitude =
@@ -69,8 +61,6 @@ function changeViewport (state, action) {
       ...payload,
       longitude: nextLongitude,
       latitude: nextLatitude,
-      width: width,
-      height: height,
       zoom: nextZoom
     }
   }
@@ -80,8 +70,8 @@ function fitBounds (state, action) {
   const { bbox } = action.payload
   const { viewport } = state
 
-  const width = window.innerWidth
-  const height = window.innerHeight
+  const width = viewport.width
+  const height = viewport.height
 
   const {
     center: [longitude, latitude],
@@ -94,16 +84,31 @@ function fitBounds (state, action) {
   }
 }
 
+function setHighlightedItem(state, action) {
+  const item = action.payload
+  let newItem
+
+  // datetime field requried for valid STAC entry, does not exist in other project layers.
+  if (item.features && item.features[0].properties.datetime) {
+    newItem = item.features[0]
+  }
+
+  return {
+    ...state,
+    selectedItem: newItem
+  }
+}
+
 const map = createSlice({
   name: 'map',
   initialState,
   reducers: {
-    changeRiver,
     changeViewport,
     fitBounds,
     setLoaded,
     setMaxBounds,
-    setMinZoom
+    setMinZoom,
+    setHighlightedItem
   }
 })
 

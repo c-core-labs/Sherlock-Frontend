@@ -13,18 +13,21 @@ function MapContainer ({ children }) {
   const viewport = useSelector(getViewport)
 
   const handleViewportChange = useCallback(props => {
-      dispatch(mapDuck.actions.changeViewport(props))
-    },
-    [dispatch]
-  )
+    dispatch(mapDuck.actions.changeViewport(props))
+  }, [dispatch])
 
   const handleLoad = useCallback(() => {
     dispatch(mapDuck.actions.setLoaded(true))
   }, [dispatch])
 
+  const handleClick = useCallback(props => {
+    dispatch(mapDuck.actions.setHighlightedItem(props))
+  }, [dispatch])
+
   return (
     <MapComponent
       onViewportChange={handleViewportChange}
+      onClick={handleClick}
       viewport={viewport}
       onLoad={handleLoad}
       mapStyle={basemapStyle}

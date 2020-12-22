@@ -1,19 +1,32 @@
-import { Box, Card, CardContent, makeStyles, Typography } from '@material-ui/core'
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+// MUI
+import { Box, Card, CardContent, makeStyles, Typography, Link } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import CardMedia from '@material-ui/core/CardMedia'
 
+// Components
 import ItemKeywords from './ItemKeywords'
 import MetaTag from './MetaTag'
+import mapDuck from '../redux/mapDuck'
+import { getSelectedItem } from '../redux/mapSelector'
 
 import '../Appbase.css'
+import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '8px'
+  },
+  highlight: {
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderColor: 'blue'
   },
   thumbnail: {
     width: 120
@@ -50,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
   
 const ResultItem = (props) => {
   const classes = useStyles()
+  const selectedItem = useSelector(getSelectedItem)
+  const dispatch = useDispatch()
 
   // TODO: This needs moving to a MetaTag Container, other tags also needed just an example.
   const metaTypes = [
@@ -61,8 +76,28 @@ const ResultItem = (props) => {
   const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
   const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
 
+  const highlightItem = () => {
+    if (selectedItem) {
+      // let elementId = document.getElementById(props.data._id)
+      // elementId.scrollIntoView(true)
+      return selectedItem.source === props.data._id ? true : false
+    } else {
+      return false
+    }
+  }
+
+  const handleSelect = useCallback((item)=> {
+    // dispatch(mapDuck.actions.setHighlightedItem(item))
+  }, [dispatch])
+
   return (
-    <Card className={classes.root}>
+    <Card
+      id={props.data.id} 
+      className={clsx({
+        [classes.root] : true,
+        [classes.highlight] : highlightItem()
+      })}
+    >
       <CardHeader
         action={
           <IconButton aria-label="">
@@ -70,7 +105,7 @@ const ResultItem = (props) => {
           </IconButton>
         }
         title={title()}
-        subheader=""
+        // subheader={highlightItem() && "Selected"}
         classes={{
           title: classes.cardHeader
         }}        
@@ -81,6 +116,7 @@ const ResultItem = (props) => {
         title=""
       />
       <CardContent className={classes.cardContent}>
+        <Link href="#" onClick={handleSelect(props.data)}>select</Link>
         <Box className={classes.summary}>
           <Typography variant="body2" color="initial">{description()}</Typography>
         </Box>
