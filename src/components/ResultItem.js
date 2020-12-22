@@ -88,7 +88,7 @@ const ResultItem = (props) => {
 
   const handleSelect = (item) => {
     // Commenting this out causes the map click functionality to work again.
-    dispatch(mapDuck.actions.setHighlightedItem(item))
+    dispatch(mapDuck.actions.setHighlightedMapItem(item))
   }
 
   return (
