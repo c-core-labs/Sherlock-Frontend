@@ -23,8 +23,9 @@ function MapContainer ({ children }) {
   function handleClick (props) {
     if (props !== undefined && props.features && props.features[0].properties.datetime) {
       let newItem = props.features[0]
+
       dispatch(mapDuck.actions.setHighlightedMapItem(newItem))
-    } 
+    }
   }
 
   return (

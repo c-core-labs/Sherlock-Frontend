@@ -88,6 +88,7 @@ function setHighlightedMapItem(state, action) {
   const item = action.payload
   let newItem
   newItem = item ? item : null
+
   return {
     ...state,
     selectedItem: newItem
