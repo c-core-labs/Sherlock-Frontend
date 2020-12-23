@@ -9,6 +9,8 @@ function ReactiveLayersContainer () {
   const reactiveContext = useContext(ReactReduxContext)
   const selectedItem = useSelector(getSelectedItem)
 
+  console.log('RLC Render:', selectedItem)
+
   const hits = reactiveContext.storeState.hits.results
     ? reactiveContext.storeState.hits.results.hits
     : []
@@ -17,11 +19,6 @@ function ReactiveLayersContainer () {
     const item = { ...hit._source, _id: hit._id }
     return item
   })
-
-  const highlightPaint = {
-    'fill-color': mapVariables.mapHighlightColour,
-    'fill-opacity': mapVariables.mapFillOpacity
-  }
 
   return (
     <>
