@@ -18,11 +18,6 @@ function ReactiveLayersContainer () {
     return item
   })
 
-  const highlightPaint = {
-    'fill-color': mapVariables.mapHighlightColour,
-    'fill-opacity': mapVariables.mapFillOpacity
-  }
-
   return (
     <>
       {selectedItem && <PolygonLayer item={selectedItem} id={"highlight-lyr"} key={"highlight-lyr"} fillColor={mapVariables.mapHighlightColour} fillOpacity={mapVariables.mapFillOpacity}></PolygonLayer>}
