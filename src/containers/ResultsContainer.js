@@ -23,13 +23,14 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
       onResultStats={onResultStats}
       react={{
         and: [
-          'repo',
-          'DateSensor',
-          'Cloud'
+          'TextSearch',
+          'DateFilter',
+          'CloudFilter',
+          'PlatformFilter'
         ]
       }}
       pagination
-      size={6}
+      size={20}
       sortOptions={sortOptions}
     />
   </div>

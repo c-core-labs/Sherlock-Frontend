@@ -13,6 +13,7 @@ export const themeVariables = {
 
 export const mapVariables = {    // Map Variables
     mapFillOpacity: 0.3,
-    mapFillColour: secondary
+    mapFillColour: secondary,
+    mapHighlightColour: primary
     
 }

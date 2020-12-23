@@ -26,6 +26,7 @@ function Map ({
       width={width}
       height={height}
       onViewportChange={onViewportChange}
+      onClick={onClick}
       mapStyle={mapStyle}
       reuseMaps={reuseMaps}
       mapOptions={mapOptions}

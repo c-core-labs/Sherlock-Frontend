@@ -5,7 +5,8 @@ import { defaultViewport } from '../config'
 
 const initialState = {
   loading: false,
-  viewport: defaultViewport
+  viewport: defaultViewport,
+  selectedItem: null
 }
 
 // TODO: try builder callback api with flow
@@ -14,10 +15,6 @@ function setLoaded (state, action) {
   const { payload } = action
 
   state.loaded = payload
-}
-
-function changeRiver (state, action) {
-  return state
 }
 
 function setMaxBounds (state, action) {
@@ -73,8 +70,8 @@ function fitBounds (state, action) {
   const { bbox } = action.payload
   const { viewport } = state
 
-  const width = window.innerWidth
-  const height = window.innerHeight
+  const width = viewport.width
+  const height = viewport.height
 
   const {
     center: [longitude, latitude],
@@ -87,16 +84,26 @@ function fitBounds (state, action) {
   }
 }
 
+function setHighlightedMapItem(state, action) {
+  const item = action.payload
+  let newItem
+  newItem = item ? item : null
+  return {
+    ...state,
+    selectedItem: newItem
+  }
+}
+
 const map = createSlice({
   name: 'map',
   initialState,
   reducers: {
-    changeRiver,
     changeViewport,
     fitBounds,
     setLoaded,
     setMaxBounds,
-    setMinZoom
+    setMinZoom,
+    setHighlightedMapItem
   }
 })
 

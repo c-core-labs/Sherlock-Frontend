@@ -22,22 +22,29 @@ const useStyles = makeStyles((theme) => ({
 
 const ItemKeywords = (props) => {
   const classes = useStyles()
-  return (
-    <Box component="ul" className={classes.root}>
-    {props.data.map((keyword, index) => {
-      return (
-        <li key={index}>
-        <Chip
-          className={classes.chip}
-          label={keyword}
-          clickable
-        />
-        </li>
-
+  if (!props.data) {
+    return (
+      <Box></Box>
+    )
+  } else {
+    return (
+      <Box component="ul" className={classes.root}>
+      {props.data.map((keyword, index) => {
+        return (
+          <li key={index}>
+          <Chip
+            className={classes.chip}
+            label={keyword}
+            clickable
+          />
+          </li>
+  
+        )}
       )}
-    )}
-    </Box>
-  )
+      </Box>
+    )
+  }
+
 }
 
 export default ItemKeywords
