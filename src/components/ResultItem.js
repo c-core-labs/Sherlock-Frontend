@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Box, Card, CardContent, makeStyles, Typography, Link } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MapOutlined from '@material-ui/icons/MapOutlined'
 import CardMedia from '@material-ui/core/CardMedia'
 
 // Components
@@ -99,9 +99,11 @@ const ResultItem = (props) => {
     >
       <CardHeader
         action={
-          <IconButton aria-label="">
-            <MoreVertIcon />
-          </IconButton>
+          <Link href="#" onClick={handleSelect}><IconButton aria-label="">
+            <MapOutlined className={classes.mapHighlightIcon} />
+            </IconButton>
+          </Link>
+          
         }
         title={title()}
         // subheader={highlightItem && "Selected"}
