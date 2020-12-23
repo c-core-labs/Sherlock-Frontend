@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     height: 'auto'
   },
+  mapHighlightIcon: {
+    fontSize: '0.9em'
+  },
   tagContainer: {
     flexDirection: 'row',
     display: 'flex',
@@ -76,11 +79,10 @@ const ResultItem = (props) => {
   const metaTags = metaTypes.filter( item => typeof(item.value) != "undefined" )
   const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
   const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
-
+  
   const highlightItem = selectedItem && selectedItem.source === props.data._id
 
   const handleSelect = () => {
-    // Commenting this out causes the map click functionality to work again.
     dispatch(mapDuck.actions.setHighlightedMapItem(props.data))
   }
 
@@ -103,7 +105,6 @@ const ResultItem = (props) => {
             <MapOutlined className={classes.mapHighlightIcon} />
             </IconButton>
           </Link>
-          
         }
         title={title()}
         // subheader={highlightItem && "Selected"}
@@ -117,7 +118,6 @@ const ResultItem = (props) => {
         title=""
       />
       <CardContent className={classes.cardContent}>
-        <Link href="#" onClick={handleSelect}>select</Link>
         <Box className={classes.summary}>
           <Typography variant="body2" color="initial">{description()}</Typography>
         </Box>
