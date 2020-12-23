@@ -25,7 +25,7 @@ function ReactiveLayersContainer () {
 
   return (
     <>
-      {selectedItem && <PolygonLayer item={selectedItem} id={"highlight-lyr"} key={"highlight-lyr"} paint={highlightPaint}></PolygonLayer>}
+      {selectedItem && <PolygonLayer item={selectedItem} id={"highlight-lyr"} key={"highlight-lyr"} fillColor={mapVariables.mapHighlightColour} fillOpacity={mapVariables.mapFillOpacity}></PolygonLayer>}
 
       {items &&
         items.map(item => {
