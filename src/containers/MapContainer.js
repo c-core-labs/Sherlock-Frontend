@@ -22,9 +22,9 @@ function MapContainer ({ children }) {
 
   const handleClick = props => {
     if (props.features && props.features[0].properties.datetime) {
-      let newItem = props.features[0]
+      const newItem = props.features[0]
       dispatch(mapDuck.actions.setHighlightedMapItem(newItem))
-    } 
+    }
   }
 
   return (

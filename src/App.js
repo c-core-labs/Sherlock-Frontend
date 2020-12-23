@@ -10,7 +10,8 @@ import { ReactiveBase, DateRange } from '@appbaseio/reactivesearch';
 import { es_url, es_key, es_index, es_type } from './config'
 
 // Components
-import ReactiveMapContainer from './containers/ReactiveMapContainer'
+import MapContainer from './containers/MapContainer'
+import ReactiveLayersContainer from './containers/ReactiveLayersContainer'
 import ResultsContainer from './containers/ResultsContainer'
 import FilterContainer from './containers/FilterContainer'
 import ReactiveSearchContainer from './containers/ReactiveSearchContainer'
@@ -167,19 +168,21 @@ const App = () => {
                     <DateRangeIcon className={classes.xSmallIcon} />
                     <Typography variant="caption" color="initial">Select a date or date range</Typography>
                   </Box>
-                    <DateRange 
-                      componentId="DateFilter" 
-                      dataField="datetime" 
-                      showFilter={true} 
-                      showClear={true} 
-                      URLParams={true} 
-                      queryFormat="date_time_no_millis" 
-                      className="es-form" 
+                    <DateRange
+                      componentId="DateFilter"
+                      dataField="datetime"
+                      showFilter={true}
+                      showClear={true}
+                      URLParams={true}
+                      queryFormat="date_time_no_millis"
+                      className="es-form"
                       />
                 </Box>
               </Box>
               {/* TODO Merge ReactiveMapContainer and MapContainer */}
-              <ReactiveMapContainer />
+              <MapContainer>
+                <ReactiveLayersContainer />
+              </MapContainer>
             </Grid>
           </Hidden>
           <Grid item className={classes.resultsWindow}>

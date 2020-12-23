@@ -86,7 +86,9 @@ function fitBounds (state, action) {
 
 function setHighlightedItem(state, action) {
   console.log('Quack Quack', action.payload)
-  
+
+  return state
+
 }
 
 function setHighlightedMapItem(state, action) {
@@ -98,6 +100,7 @@ function setHighlightedMapItem(state, action) {
   //   newItem = item.features[0]
   // }
   newItem = item ? item : null
+
   return {
     ...state,
     selectedItem: newItem

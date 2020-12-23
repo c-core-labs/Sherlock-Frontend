@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'flex-start',
   }
 }))
-  
+
 const ResultItem = (props) => {
   const classes = useStyles()
   const selectedItem = useSelector(getSelectedItem)
@@ -86,14 +86,14 @@ const ResultItem = (props) => {
     }
   }
 
-  const handleSelect = (item) => {
+  const handleSelect = () => {
     // Commenting this out causes the map click functionality to work again.
-    dispatch(mapDuck.actions.setHighlightedMapItem(item))
+    dispatch(mapDuck.actions.setHighlightedMapItem(props.data))
   }
 
   return (
     <Card
-      id={props.data.id} 
+      id={props.data.id}
       className={clsx({
         [classes.root] : true,
         [classes.highlight] : highlightItem()
@@ -109,7 +109,7 @@ const ResultItem = (props) => {
         // subheader={highlightItem() && "Selected"}
         classes={{
           title: classes.cardHeader
-        }}        
+        }}
       />
       <CardMedia
         className={classes.thumbnail}
@@ -117,7 +117,7 @@ const ResultItem = (props) => {
         title=""
       />
       <CardContent className={classes.cardContent}>
-        <Link href="#" onClick={handleSelect(props.data)}>select</Link>
+        <Link href="#" onClick={handleSelect}>select</Link>
         <Box className={classes.summary}>
           <Typography variant="body2" color="initial">{description()}</Typography>
         </Box>
@@ -127,7 +127,7 @@ const ResultItem = (props) => {
       </CardContent>
       <div className={classes.tagContainer}>
         {metaTags.map((item, index) => {
-          return <MetaTag key={index} label={item.icon} value={item.value} /> 
+          return <MetaTag key={index} label={item.icon} value={item.value} />
         })}
       </div>
     </Card>

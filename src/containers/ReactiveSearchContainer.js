@@ -2,7 +2,8 @@ import React from 'react'
 import { DataSearch } from '@appbaseio/reactivesearch';
 import { useSelector } from 'react-redux'
 
-import { getMapBounds } from '../redux/mapSelector'
+import { getMapBoundsDebounced } from '../redux/mapSelector'
+import useDebounce from '../hooks/useDebounce'
 
 function ReactiveSearchContainer () {
 
@@ -10,7 +11,9 @@ function ReactiveSearchContainer () {
   // A separate hidden datafield with just the geo-query portion might be better, separating the query logic...
   // either way, we need to debounce this - running into rate limit response from appbase.
 
-  const bbox = useSelector(getMapBounds)
+  // TODO: Move this debounce logic into the selector to reduce re-rendering
+  const bbox = useSelector(getMapBoundsDebounced)
+  const dbbox = useDebounce(bbox, 500)
 
   const geoQuery = (value) => {
     return {
@@ -33,7 +36,7 @@ function ReactiveSearchContainer () {
               bbox: {
                 shape: {
                   type: "envelope",
-                  coordinates: [ [ bbox[0], bbox[3] ], [ bbox[2], bbox[1] ] ]
+                  coordinates: [ [ dbbox[0], dbbox[3] ], [ dbbox[2], dbbox[1] ] ]
                 },
                 relation: "INTERSECTS"
               }
@@ -58,7 +61,7 @@ function ReactiveSearchContainer () {
       placeholder="Search STAC"
       iconPosition="left"
       autosuggest={true}
-      debounce={300}
+      debounce={500}
       URLParams
       className="es-form"
       innerClass={{
