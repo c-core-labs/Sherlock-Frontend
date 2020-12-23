@@ -10,7 +10,7 @@ function ReactiveMapContainer () {
   const reactiveContext = useContext(ReactReduxContext)
   const selectedItem = useSelector(getSelectedItem)
   
-  console.log('RMC ReRender:', selectedItem)
+  console.log('RMC Render:', selectedItem)
   
   const hits = reactiveContext.storeState.hits.results
     ? reactiveContext.storeState.hits.results.hits

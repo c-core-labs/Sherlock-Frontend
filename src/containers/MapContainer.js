@@ -20,8 +20,8 @@ function MapContainer ({ children }) {
     dispatch(mapDuck.actions.setLoaded(true))
   }, [dispatch])
 
-  const handleClick = props => {
-    if (props.features && props.features[0].properties.datetime) {
+  function handleClick (props) {
+    if (props !== undefined && props.features && props.features[0].properties.datetime) {
       let newItem = props.features[0]
       dispatch(mapDuck.actions.setHighlightedMapItem(newItem))
     } 

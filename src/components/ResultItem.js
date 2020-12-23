@@ -1,4 +1,3 @@
-import React  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // MUI
@@ -80,15 +79,14 @@ const ResultItem = (props) => {
     if (selectedItem) {
       // let elementId = document.getElementById(props.data._id)
       // elementId.scrollIntoView(true)
-      return selectedItem.source === props.data._id ? true : false
+      return selectedItem.source === props.data._id || selectedItem.id === props.data._id ? true : false
     } else {
       return false
     }
   }
 
-  const handleSelect = (item) => {
-    // Commenting this out causes the map click functionality to work again.
-    dispatch(mapDuck.actions.setHighlightedMapItem(item))
+  function handleSelect(item){
+    dispatch(mapDuck.actions.setHighlightedMapItem(props.data))
   }
 
   return (
@@ -106,7 +104,6 @@ const ResultItem = (props) => {
           </IconButton>
         }
         title={title()}
-        // subheader={highlightItem() && "Selected"}
         classes={{
           title: classes.cardHeader
         }}        
@@ -117,7 +114,7 @@ const ResultItem = (props) => {
         title=""
       />
       <CardContent className={classes.cardContent}>
-        <Link href="#" onClick={handleSelect(props.data)}>select</Link>
+        <Link href="#" onClick={handleSelect}>select</Link>
         <Box className={classes.summary}>
           <Typography variant="body2" color="initial">{description()}</Typography>
         </Box>

@@ -84,19 +84,9 @@ function fitBounds (state, action) {
   }
 }
 
-function setHighlightedItem(state, action) {
-  console.log('Quack Quack', action.payload)
-  
-}
-
 function setHighlightedMapItem(state, action) {
   const item = action.payload
   let newItem
-  console.log('Quack: ', item)
-  // datetime field requried for valid STAC entry, does not exist in other project layers.
-  // if (item.features && item.features[0].properties.datetime) {
-  //   newItem = item.features[0]
-  // }
   newItem = item ? item : null
   return {
     ...state,
@@ -113,7 +103,6 @@ const map = createSlice({
     setLoaded,
     setMaxBounds,
     setMinZoom,
-    setHighlightedItem,
     setHighlightedMapItem
   }
 })
