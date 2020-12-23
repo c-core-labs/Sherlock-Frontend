@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { useRef }  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // MUI
@@ -13,6 +13,7 @@ import ItemKeywords from './ItemKeywords'
 import MetaTag from './MetaTag'
 import mapDuck from '../redux/mapDuck'
 import { getSelectedItem } from '../redux/mapSelector'
+import useScroll from '../hooks/useScroll'
 
 import '../Appbase.css'
 import clsx from 'clsx'
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResultItem = (props) => {
   const classes = useStyles()
+  const [ref, executeScroll] = useScroll()
   const selectedItem = useSelector(getSelectedItem)
   const dispatch = useDispatch()
 
@@ -76,27 +78,24 @@ const ResultItem = (props) => {
   const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
   const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
 
-  const highlightItem = () => {
-    if (selectedItem) {
-      // let elementId = document.getElementById(props.data._id)
-      // elementId.scrollIntoView(true)
-      return selectedItem.source === props.data._id ? true : false
-    } else {
-      return false
-    }
-  }
+  const highlightItem = selectedItem && selectedItem.source === props.data._id
 
   const handleSelect = () => {
     // Commenting this out causes the map click functionality to work again.
     dispatch(mapDuck.actions.setHighlightedMapItem(props.data))
   }
 
+  if (highlightItem && ref && ref.current) {
+    executeScroll()
+  }
+
   return (
     <Card
+      ref={ref}
       id={props.data.id}
       className={clsx({
         [classes.root] : true,
-        [classes.highlight] : highlightItem()
+        [classes.highlight] : highlightItem
       })}
     >
       <CardHeader
@@ -106,7 +105,7 @@ const ResultItem = (props) => {
           </IconButton>
         }
         title={title()}
-        // subheader={highlightItem() && "Selected"}
+        // subheader={highlightItem && "Selected"}
         classes={{
           title: classes.cardHeader
         }}
