@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 // MUI
@@ -105,7 +104,6 @@ const ResultItem = (props) => {
           </IconButton>
         }
         title={title()}
-        // subheader={highlightItem && "Selected"}
         classes={{
           title: classes.cardHeader
         }}
