@@ -80,8 +80,8 @@ const ResultItem = (props) => {
   const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
   const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
   
-  const highlightItem = selectedItem && selectedItem.source === props.data._id
-
+  const highlightItem = selectedItem && selectedItem.id === props.data.id
+  
   const handleSelect = () => {
     dispatch(mapDuck.actions.setHighlightedMapItem(props.data))
   }

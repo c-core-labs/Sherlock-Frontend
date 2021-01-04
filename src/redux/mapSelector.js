@@ -20,11 +20,9 @@ export const getMapBounds = createSelector([getViewport], viewport => {
 })
 
 export const getMapBoundsDebounced = createSelector([getMapBounds], bounds => {
-
   return bounds
 })
 
-// TODO: Don't need a selector if just passing through state value
 export const getSelectedItem = createSelector([getHighlighted], item => {
   return item
 })

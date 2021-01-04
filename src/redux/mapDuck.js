@@ -86,9 +86,13 @@ function fitBounds (state, action) {
 
 function setHighlightedMapItem(state, action) {
   const item = action.payload
-  let newItem
-  newItem = item ? item : null
-
+  let newItem = item ? item : null
+  
+  // If there is no 'id' property (which there isn't if a map polygon has been selected), set it from source property.
+  if (!newItem.id){
+    newItem.id = newItem.source
+  }
+  
   return {
     ...state,
     selectedItem: newItem
