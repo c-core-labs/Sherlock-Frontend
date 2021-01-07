@@ -1,40 +1,38 @@
 import React from 'react'
-import { makeStyles, Box, Typography, Accordion, AccordionSummary, AccordionDetails, Grid } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { makeStyles, Grid, Box} from '@material-ui/core';
 import CloudCoverFilter from '../components/CloudCoverFilter'
-import PlatformFilter from './PlatformFilterContainer'
-
+import PlatformFilter from '../components/PlatformFilter'
+import FilterPopperContainer from './FilterPopperContainer'
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1)
   },
-  itemControl: {
-    width: '100%'
-  }
 }))
 
-export default function FilterPopover() {
+const FilterContainer = () => {
   const classes = useStyles();
   return (
-    <Box className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon/>}>
-          <Typography>Filters</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            >
-            <CloudCoverFilter />
-            <PlatformFilter />
-          </Grid>
-        </AccordionDetails>
-      </Accordion> 
-    </Box>
+    <Grid className={classes.root} container spacing={1}>
+      <Grid item>
+        <Box>
+          <FilterListIcon/>
+        </Box>
+      </Grid>
+      <Grid item>
+        <FilterPopperContainer label="Cloud Cover">
+          <CloudCoverFilter />
+        </FilterPopperContainer>
+      </Grid>
+      <Grid item>
+        <FilterPopperContainer label="Satellite">
+          <PlatformFilter />
+        </FilterPopperContainer>
+      </Grid>
+      {/* TODO: Resolution Filter */}
+      {/* TODO: Public/Private Data Filter */}
+    </Grid>
   );
 }
+export default FilterContainer

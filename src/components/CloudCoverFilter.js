@@ -1,6 +1,6 @@
 import React from 'react'
 import { RangeSlider } from '@appbaseio/reactivesearch';
-import { makeStyles, Box, Typography } from '@material-ui/core';
+import { makeStyles, Box} from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,16 +12,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function FilterPopover() {
+const FilterPopover = () => {
   const classes = useStyles();
   return (
     <Box className={classes.itemControl}>
-      <Typography>Cloud Cover:</Typography>
       <RangeSlider
         componentId="CloudFilter"
         filterLabel="Cloud Cover"
         dataField={"properties.eo:cloud_cover"}
-        stepValue={1}
+        stepValue={5}
         showHistogram={true}
         showFilter={true}
         interval={2}
@@ -30,8 +29,8 @@ export default function FilterPopover() {
           end: 100,
       }}
         rangeLabels={{
-          start: 'Start',
-          end: 'End',
+          start: 'Min',
+          end: 'Max',
       }}
         URLParams={true}
         includeNullValues
@@ -42,3 +41,5 @@ export default function FilterPopover() {
     </Box>
   )
 }
+
+export default FilterPopover

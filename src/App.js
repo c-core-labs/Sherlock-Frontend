@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   resultsWindow: {
     width: '650px',
     maxWidth: '100%',
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#EDEDED',
     height: '100vh',
     overflow: 'Hidden',
     maxHeight: '100vh',
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   },
   resultsSubWindow: {
     overflow: 'auto',
-    height: `calc(100vh - ${themeVariables.headerHeight})`
+    height: `calc(100vh - ${themeVariables.headerHeight} - 48px)`
   },
   resultsHeaderBar: {
     backgroundColor: '#fff',
@@ -195,9 +195,9 @@ const App = () => {
                 </Avatar>
               </Grid>
             </Grid>
+            <FilterContainer />
             {/* TODO Move this into SearchContainer */}
             <Grid item className={classes.resultsSubWindow}>
-              <FilterContainer />
               <ResultsContainer currentTopics={currentTopics} toggleTopic={toggleTopic} />
             </Grid>
           </Grid>
