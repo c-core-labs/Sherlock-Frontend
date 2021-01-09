@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 
 // MUI
-import { Box, Card, CardContent, makeStyles, Typography, Link } from '@material-ui/core'
+import { Box, Card, CardContent, makeStyles, Typography, Link, Grid } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import MapOutlined from '@material-ui/icons/MapOutlined'
@@ -13,9 +13,10 @@ import MetaTag from './MetaTag'
 import mapDuck from '../redux/mapDuck'
 import { getSelectedItem } from '../redux/mapSelector'
 import useScroll from '../hooks/useScroll'
-
+import ThumbnailPreview from './ThumbnailPreview'
 import '../Appbase.css'
 import clsx from 'clsx'
+// import Tooltip from 'material-ui/internal/Tooltip' TODO: Terrible component, find a better one.
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +62,24 @@ const useStyles = makeStyles((theme) => ({
     margin: '4px',
     zIndex: 1000,
     alignContent: 'flex-start',
+    justifyContent: 'space-between',
+    width: '100%'
+  },
+  tagLeft: {
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+    margin: '4px',
+    zIndex: 1000,
+  },
+  tagRight: {
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'middle',
+    margin: '4px',
+    zIndex: 1000,
   }
+
 }))
 
 const ResultItem = (props) => {
@@ -100,14 +118,7 @@ const ResultItem = (props) => {
       })}
     >
       <CardHeader
-        action={
-          <Link href="#" onClick={handleSelect}><IconButton aria-label="">
-            <MapOutlined className={classes.mapHighlightIcon} />
-            </IconButton>
-          </Link>
-        }
         title={title()}
-        // subheader={highlightItem && "Selected"}
         classes={{
           title: classes.cardHeader
         }}
@@ -125,11 +136,25 @@ const ResultItem = (props) => {
           <ItemKeywords data={props.data.properties.keywords} key={props.data.id} />
         </Box>
       </CardContent>
-      <div className={classes.tagContainer}>
-        {metaTags.map((item, index) => {
-          return <MetaTag key={index} label={item.icon} value={item.value} />
-        })}
-      </div>
+      <Grid className={classes.tagContainer} container>
+        <Grid item className={classes.tagLeft}>
+          {metaTags.map((item, index) => {
+            return <MetaTag key={index} label={item.icon} value={item.value} />
+          })}
+        </Grid>
+        <Grid item className={classes.tagRight}>
+          <Grid item>
+            <ThumbnailPreview assets={props.data.assets} />
+          </Grid>
+          <Grid item>
+            <Link href="#" onClick={handleSelect}>
+              <IconButton aria-label="">
+                <MapOutlined className={classes.mapHighlightIcon} />
+              </IconButton>
+            </Link>
+          </Grid>
+        </Grid>
+      </Grid>
     </Card>
   )
 }

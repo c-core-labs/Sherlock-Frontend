@@ -179,7 +179,6 @@ const App = () => {
                       />
                 </Box>
               </Box>
-              {/* TODO Merge ReactiveMapContainer and MapContainer */}
               <MapContainer>
                 <ReactiveLayersContainer />
               </MapContainer>
