@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, IconButton } from '@material-ui/core'
+import { Link } from '@material-ui/core'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'
 import ImageSearchOutlinedIcon from '@material-ui/icons/ImageSearchOutlined';
@@ -13,12 +13,10 @@ const ThumbnailPreview = (props) => {
   }
 
   return (
-    <div>
+    <>
       {hasThumbnail() &&
-        <Link onClick={() => setIsOpen(true)}>
-          <IconButton>
+        <Link href="#" onClick={() => setIsOpen(true)}>
             <ImageSearchOutlinedIcon />
-          </IconButton>
         </Link>
       }  
 
@@ -28,9 +26,8 @@ const ThumbnailPreview = (props) => {
           mainSrc={props.assets.thumbnail.href}
           onCloseRequest={() => setIsOpen(false)}
         />
-
       </>
-    }</div>
+    }</>
   )
 } 
 

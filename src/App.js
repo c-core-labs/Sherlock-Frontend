@@ -19,9 +19,10 @@ import ReactiveSearchContainer from './containers/ReactiveSearchContainer'
 // Style /  MUI
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Hidden, Typography} from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import { themeVariables } from './theme'
+import AppBar from './components/AppBar'
+
 import './Appbase.css'
 
 
@@ -96,28 +97,7 @@ const useStyles = makeStyles((theme) => ({
   resultsSubWindow: {
     overflow: 'auto',
     height: `calc(100vh - ${themeVariables.headerHeight} - 48px)`
-  },
-  resultsHeaderBar: {
-    backgroundColor: '#fff',
-    width: '100%',
-    height: themeVariables.headerHeight,
-    display: 'flex',
-    flexWrap: 'no-wrap',
-    flexDirection: "row",
-    justify: "flex-start",
-    alignContent: "stretch",
-    alignItems: "center",
-    padding: '0px 20px'
-  },
-  coreLogo: {
-    flexGrow: 1,
-    padding: '0px 15px'
-  },
-  resultsHeaderAvatar: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
   }
-
 }))
 
 const App = () => {
@@ -170,11 +150,11 @@ const App = () => {
                   </Box>
                     <DateRange
                       componentId="DateFilter"
-                      dataField="datetime"
+                      dataField="properties.datetime"
                       showFilter={true}
                       showClear={true}
                       URLParams={true}
-                      queryFormat="date_time_no_millis"
+                      queryFormat="date"
                       className="es-form"
                       />
                 </Box>
@@ -185,17 +165,9 @@ const App = () => {
             </Grid>
           </Hidden>
           <Grid item className={classes.resultsWindow}>
-            <Grid container item className={classes.resultsHeaderBar}>
-              <Grid item className={classes.coreLogo}>
-                <img src="c-core-labs-logo.png" alt="C-Core Labs Logo" />
-              </Grid>
-              <Grid item>
-                <Avatar className={classes.resultsHeaderAvatar}>
-                </Avatar>
-              </Grid>
-            </Grid>
+            <AppBar />
             <FilterContainer />
-            {/* TODO Move this into SearchContainer */}
+            {/* TODO Move this into a SearchContainer */}
             <Grid item className={classes.resultsSubWindow}>
               <ResultsContainer currentTopics={currentTopics} toggleTopic={toggleTopic} />
             </Grid>
