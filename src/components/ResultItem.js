@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 // MUI
 import { Box, Card, CardContent, makeStyles, Typography, Link, Grid } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
 import MapOutlined from '@material-ui/icons/MapOutlined'
 import CardMedia from '@material-ui/core/CardMedia'
 
@@ -16,6 +15,7 @@ import useScroll from '../hooks/useScroll'
 import ThumbnailPreview from './ThumbnailPreview'
 import '../Appbase.css'
 import clsx from 'clsx'
+import DownloadAsset from './DownloadAsset'
 // import Tooltip from 'material-ui/internal/Tooltip' TODO: Terrible component, find a better one.
 
 const useStyles = makeStyles((theme) => ({
@@ -53,12 +53,12 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto'
   },
   mapHighlightIcon: {
-    fontSize: '0.9em'
+    fontSize: '1.5em'
   },
   tagContainer: {
     flexDirection: 'row',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'middle',
     margin: '4px',
     zIndex: 1000,
     alignContent: 'flex-start',
@@ -78,6 +78,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'middle',
     margin: '4px',
     zIndex: 1000,
+  },
+  actionIcon: {
+    marginTop: '8px',
+    marginRight: '10px',
+    // padding: '8px 6px',
   }
 
 }))
@@ -143,15 +148,14 @@ const ResultItem = (props) => {
           })}
         </Grid>
         <Grid item className={classes.tagRight}>
-          <Grid item>
+          <Grid item className={classes.actionIcon}>
             <ThumbnailPreview assets={props.data.assets} />
           </Grid>
-          <Grid item>
-            <Link href="#" onClick={handleSelect}>
-              <IconButton aria-label="">
-                <MapOutlined className={classes.mapHighlightIcon} />
-              </IconButton>
-            </Link>
+          <Link href="#" onClick={handleSelect} item className={classes.actionIcon}>
+            <MapOutlined className={classes.mapHighlightIcon} />
+          </Link>
+          <Grid item className={classes.actionIcon}>
+            <DownloadAsset assets={props.data.assets} />
           </Grid>
         </Grid>
       </Grid>
