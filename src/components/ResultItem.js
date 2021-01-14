@@ -15,6 +15,7 @@ import useScroll from '../hooks/useScroll'
 import ThumbnailPreview from './ThumbnailPreview'
 import '../Appbase.css'
 import clsx from 'clsx'
+import DownloadAsset from './DownloadAsset'
 // import Tooltip from 'material-ui/internal/Tooltip' TODO: Terrible component, find a better one.
 
 const useStyles = makeStyles((theme) => ({
@@ -150,11 +151,12 @@ const ResultItem = (props) => {
           <Grid item className={classes.actionIcon}>
             <ThumbnailPreview assets={props.data.assets} />
           </Grid>
-          {/* <Grid item> */}
-            <Link href="#" onClick={handleSelect} item className={classes.actionIcon}>
-              <MapOutlined className={classes.mapHighlightIcon} />
-            </Link>
-          {/* </Grid> */}
+          <Link href="#" onClick={handleSelect} item className={classes.actionIcon}>
+            <MapOutlined className={classes.mapHighlightIcon} />
+          </Link>
+          <Grid item className={classes.actionIcon}>
+            <DownloadAsset assets={props.data.assets} />
+          </Grid>
         </Grid>
       </Grid>
     </Card>
