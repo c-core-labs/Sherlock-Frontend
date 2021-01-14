@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link, ListItemIcon } from '@material-ui/core'
+import { Menu, MenuItem, Link, ListItemIcon, Typography } from '@material-ui/core'
 import { CloudDownloadOutlined } from '@material-ui/icons'
-import { Menu, MenuItem } from '@material-ui/core'
-import Typography from '@material-ui/core/typography'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 const DownloadAsset = (props) => {
