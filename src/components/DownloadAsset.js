@@ -6,7 +6,7 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 const DownloadAsset = (props) => {
 
   const canDownload = () => {
-    return props.assets ? true : false
+    return props.assets
   }
   
   if (!props.assets) {
@@ -14,14 +14,15 @@ const DownloadAsset = (props) => {
   }
 
   const items = Object.keys(props.assets)
-  const itemList = items.map( item => {
+  const itemList = items.map( (item, index) => {
+    const title = props.assets[item].title ? props.assets[item].title : props.assets[item].description
     return (
-      props.assets[item].title &&
-      <MenuItem component={Link} href={props.assets[item].href} target="_blank">
+      title &&
+      <MenuItem component={Link} href={props.assets[item].href} target="_blank" key={index}>
         <ListItemIcon>
           <CloudDownloadOutlined />
         </ListItemIcon>
-        <Typography>{props.assets[item].title}</Typography>
+        <Typography>{title}</Typography>
       </MenuItem>
     )
   })

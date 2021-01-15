@@ -8,22 +8,23 @@ const ThumbnailPreview = (props) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const hasThumbnail = () => {
-    return props.assets.thumbnail ? true : false
-  }
+  const values = Object.values(props.assets)
+  const hasRole = values.find(asset => asset.roles && asset.roles.includes('thumbnail'))
 
   return (
     <>
-      {hasThumbnail() &&
+      {hasRole &&
         <Link href="#" onClick={() => setIsOpen(true)}>
+          {/* <IconButton> */}
             <ImageSearchOutlinedIcon />
+          {/* </IconButton> */}
         </Link>
       }  
 
-      {hasThumbnail && isOpen && 
+      {hasRole && isOpen && 
       <>
         <Lightbox
-          mainSrc={props.assets.thumbnail.href}
+          mainSrc={hasRole.href}
           onCloseRequest={() => setIsOpen(false)}
         />
       </>
