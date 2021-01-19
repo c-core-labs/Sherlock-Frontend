@@ -113,6 +113,11 @@ const ResultItem = (props) => {
     executeScroll()
   }
 
+  const readableDate = () => {
+    const date = new Date(props.data.properties.datetime)
+    return date.toLocaleDateString("en-US")
+  }
+
   return (
     <Card
       ref={ref}
@@ -124,6 +129,7 @@ const ResultItem = (props) => {
     >
       <CardHeader
         title={title()}
+        subheader={readableDate()}
         classes={{
           title: classes.cardHeader
         }}
