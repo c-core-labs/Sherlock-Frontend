@@ -16,7 +16,7 @@ export const getCoordinates = createSelector([getViewport], viewport => {
 
 export const getMapBounds = createSelector([getViewport], viewport => {
   const { width, height, latitude, longitude, zoom } = viewport
-  return geoViewport.bounds([longitude, latitude], zoom, [width, height], 512)
+  return geoViewport.bounds([longitude, latitude], (zoom * 1.05 ), [width, height], 512)
 })
 
 export const getMapBoundsDebounced = createSelector([getMapBounds], bounds => {

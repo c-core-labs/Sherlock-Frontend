@@ -6,6 +6,7 @@ import { sortOptions } from '../components/constants'
 import ResultItem from '../components/ResultItem'
 import '../Appbase.css'
 
+
 const onResultStats = (results, time) => (
   <div className='flex justify-end'>
     {results} results found in {time}ms
@@ -17,6 +18,7 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
   <div className='result-list'>
     <SelectedFilters className='m1' />
     <ReactiveList
+      stream={true}
       componentId='results'
       dataField='name'
       renderItem={(data) => <ResultItem data={data} key={data.id} />}
@@ -30,8 +32,10 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
         ]
       }}
       pagination
-      size={20}
+      size={60}
       sortOptions={sortOptions}
+      showLoader={true}
+      loader="Loading..."
     />
   </div>
 )
