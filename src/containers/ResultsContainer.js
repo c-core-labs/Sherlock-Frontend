@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { SelectedFilters, ReactiveList } from '@appbaseio/reactivesearch'
 import { sortOptions } from '../components/constants'
 
+import Spinner from '../components/Spinner'
 import ResultItem from '../components/ResultItem'
 import '../Appbase.css'
 
