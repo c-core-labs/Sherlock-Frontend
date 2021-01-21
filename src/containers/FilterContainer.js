@@ -4,6 +4,7 @@ import CloudCoverFilter from '../components/CloudCoverFilter'
 import PlatformFilter from '../components/PlatformFilter'
 import FilterPopperContainer from './FilterPopperContainer'
 import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterModal from '../components/FilterModal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,7 @@ const FilterContainer = () => {
       <Grid item>
         <Box>
           <FilterListIcon/>
+          <FilterModal />
         </Box>
       </Grid>
       <Grid item>
@@ -32,6 +34,7 @@ const FilterContainer = () => {
       </Grid>
       {/* TODO: Resolution Filter */}
       {/* TODO: Public/Private Data Filter */}
+      {/* TODO: Data Type - based on extension */}
     </Grid>
   );
 }
