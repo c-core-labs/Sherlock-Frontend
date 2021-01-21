@@ -2,20 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { defaultFilters } from '../config'
 
 const initialState = defaultFilters.reduce((accumulator, filter) => {
-  accumulator[filter.ext] = filter.default
-
-  return accumulator
+  return { ...accumulator, [filter.ext]: filter.default }
 }, {})
 
 function setFilter(state, action) {
   const { payload } = action
 
-  const filter = state[payload]
-
-  return {
-    ...state,
-    [payload]: !filter
-  }
+  state[payload] = !state[payload]
 }
 
 const filters = createSlice({
