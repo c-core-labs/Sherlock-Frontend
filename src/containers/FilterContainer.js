@@ -19,9 +19,9 @@ const FilterContainer = () => {
       <Grid item>
         <Box>
           <FilterListIcon/>
-          <FilterModal />
         </Box>
       </Grid>
+      <Grid item><FilterModal /></Grid>
       <Grid item>
         <FilterPopperContainer label="Cloud Cover">
           <CloudCoverFilter />

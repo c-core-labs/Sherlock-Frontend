@@ -13,7 +13,7 @@ import { Grid, Box } from '@material-ui/core';
 import {defaultFilters} from '../config'
 import { useSelector } from 'react-redux'
 import { getFilters } from '../redux/filterSelector'
-
+import blue from '@material-ui/core/colors/blue'
 // TODO: Convert this into a generic modal component with title, content, and action slots.
 
 const styles = (theme) => ({
@@ -50,7 +50,17 @@ const useStyles = makeStyles((theme) => ({
   },
   switchItem: {
 
-  }
+  },
+  buttonStyle: {
+    padding: '5px 7px',
+    borderStyle: 'solid',
+    borderRadius: '4px',
+    borderColor: 'white',
+    borderWidth: '0px',
+    backgroundColor: blue[500],
+    boxShadow: '5px',
+    color: 'white'
+  },
 
 }))
 
@@ -95,9 +105,9 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
+      <button className={classes.buttonStyle} onClick={handleClickOpen}>
+        Data Filtering
+      </button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Additional Filters
@@ -116,9 +126,7 @@ export default function CustomizedDialogs() {
                 </Box>
               </Grid>
             )
-            
           })}
-
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">

@@ -3,6 +3,7 @@ import { DataSearch } from '@appbaseio/reactivesearch';
 import { useSelector } from 'react-redux'
 
 import { getMapBoundsDebounced } from '../redux/mapSelector'
+import { getActiveFilters } from '../redux/filterSelector'
 import useDebounce from '../hooks/useDebounce'
 
 function ReactiveSearchContainer () {
@@ -10,10 +11,16 @@ function ReactiveSearchContainer () {
   const bbox = useSelector(getMapBoundsDebounced)
   const dbbox = useDebounce(bbox, 800)
 
+  const extensions = useSelector(getActiveFilters)
   const geoQuery = (value) => {
     return {
       query: {
         bool: {
+          must: {
+            terms: {
+              stac_extensions: extensions
+            }
+          },
           should: { // or 'must' if we want to strictly limit results
             multi_match: {
               query: value,
@@ -22,22 +29,23 @@ function ReactiveSearchContainer () {
                 'properties.description',
                 'properties.title.raw',
                 'properties.keywords',
-                // 'properties.bbox'
               ]
-            },
+            }
           },
-          filter: {
-            geo_shape: {
-              bbox: {
-                shape: {
-                  type: "envelope",
-                  coordinates: [ [ dbbox[0], dbbox[3] ], [ dbbox[2], dbbox[1] ] ]
-                },
-                relation: "WITHIN"
+          filter: [
+            {
+              geo_shape: {
+                bbox: {
+                  shape: {
+                    type: "envelope",
+                    coordinates: [ [ dbbox[0], dbbox[3] ], [ dbbox[2], dbbox[1] ] ]
+                  },
+                  relation: "WITHIN"
+                }
               }
             }
-          }
-        }
+          ]
+        },
       }
     }
   }
