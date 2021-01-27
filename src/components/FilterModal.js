@@ -110,10 +110,9 @@ export default function CustomizedDialogs() {
       </button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Additional Filters
+          I am interested in:
         </DialogTitle>
         <DialogContent dividers>
-          <Typography className={classes.title} variant="h7">Data Types:</Typography>          
           {defaultFilters.map(item => {
             return (
               <Grid container className={classes.itemRow}>
