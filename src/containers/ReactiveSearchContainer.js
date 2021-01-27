@@ -11,9 +11,6 @@ function ReactiveSearchContainer () {
 
   const bbox = useSelector(getMapBoundsDebounced)
   const dataFilter = useSelector(getDataType)
-  // Test
-  console.log(dataFilter)
-  
   const dbbox = useDebounce(bbox, 800)
 
   const extensions = useSelector(getActiveFilters)
@@ -30,9 +27,6 @@ function ReactiveSearchContainer () {
                   {
                     terms: { 'stac_extensions': extensions }
                   },
-                  // {
-                  //   terms: { 'properties.meta:data_types': dataFilter }
-                  // },   
                   {
                     bool: {
                       must_not: {
@@ -69,12 +63,14 @@ function ReactiveSearchContainer () {
                   relation: "WITHIN"
                 }
               }
-            }
+            },
+            {
+              terms: { 'properties.meta:asset_types': dataFilter }
+            },   
           ]
         }
       }
     }
-    // Add Filter dependant mutations to query JSON Here:
     
     return query
   } 
