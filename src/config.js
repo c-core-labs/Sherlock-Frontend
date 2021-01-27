@@ -20,13 +20,14 @@ export const defaultViewport = {
 }
 
 export const defaultFilters = [
+  {title: 'Unclassified', subtitle: 'Data that has no type assigned', ext: 'null', default: true},
   {title: 'SAR', subtitle: 'Sentinel 1, RADARSAT...', ext: 'sar', default: true},
   {title: 'Optical Satellite', subtitle: 'Sentinel 2, LANDSAT...', ext: 'eo', default: true},
   {title: 'RPAS', subtitle: 'Drone/UAV', ext: 'drone', default: true},
   {title: 'FMV', subtitle: 'Full Motion Video', ext: 'fmv', default: true},
-  {title: 'Point Cloud', subtitle: '', ext: 'point_cloud', default: true},
-  {title: 'Tiled Assets', subtitle: 'WMS, WMTS, MVT', ext: 'tiled_assets', default: true},
-  {title: 'Data Cube', subtitle: '', ext: 'data_cube', default: true}
+  {title: 'Point Cloud', subtitle: '', ext: 'pointcloud', default: true},
+  {title: 'Tiled Assets', subtitle: 'WMS, WMTS, MVT', ext: 'tiled-assets', default: true},
+  {title: 'Data Cube', subtitle: '', ext: 'datacube', default: true}
 ]
   
 
