@@ -6,6 +6,7 @@ import { getMapBoundsDebounced } from '../redux/mapSelector'
 import { getActiveFilters, getDataType } from '../redux/filterSelector'
 import useDebounce from '../hooks/useDebounce'
 
+
 function ReactiveSearchContainer () {
 
   const bbox = useSelector(getMapBoundsDebounced)
