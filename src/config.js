@@ -29,7 +29,12 @@ export const defaultFilters = [
   {title: 'Tiled Assets', subtitle: 'WMS, WMTS, MVT', ext: 'tiled-assets', default: true},
   {title: 'Data Cube', subtitle: '', ext: 'datacube', default: true}
 ]
-  
+
+export const dataTypeFilter = [
+  {id: 1, label: 'All', value: 'all'},
+  {id: 2, label: 'Raster', value: 'raster'},
+  {id: 3, label: 'Vector', value: 'vector'}
+]
 
 // export const basemapStyle = 'mapbox://styles/gnoseworthy/ck37pn6rv7o0a1cmm2l4h5xsi'
 export const basemapStyle = 'mapbox://styles/mapbox/satellite-v9'

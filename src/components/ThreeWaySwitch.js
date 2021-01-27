@@ -3,19 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import { getDataType } from '../redux/filterSelector'
-import dataTypeDuck from '../redux/dataTypeDuck'
-import { useDispatch, useSelector } from 'react-redux'
+
+import { dataTypeFilter } from '../config'
 
 const useStyles = makeStyles((theme) => ({
-  toggleContainer: {
-    // margin: theme.spacing(0.5),
-  },
   toggleButton: {
-    '&$selected': {
-        backgroundColor: 'blue',
-        color: 'white'
-    },
     padding: theme.spacing(0.2,0.7),
     fontSize: '0.8em',
     border: 'none',
@@ -27,27 +19,31 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ToggleButtonNotEmpty() {
-  const dispatch = useDispatch()
-  const dataType = useSelector(getDataType)
+// TODO: Pass switch values in as props.
 
-  const handleChange = (event, newFormat) => {
-    dispatch(dataTypeDuck.actions.setDataType(newFormat))
-  }
-
+const ThreeWaySwitch = ({value, onChange}) => {
   const classes = useStyles();
-
+  const handleChange = (event, newValue) => {
+    onChange(newValue)
+  }
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
-        <div className={classes.toggleContainer}>
+        <div>
           <ToggleButtonGroup
-            value={dataType.dataType}
+            value={value}
             exclusive={true}
             onChange={handleChange}
             aria-label="text alignment"
-          >          
-            <ToggleButton value="all" aria-label="Both Raster & Vector" className={classes.toggleButton}>
+          >
+          {dataTypeFilter.map(item => {
+            return (
+              <ToggleButton value={item.value} aria-label={item.label} key={item.id} className={classes.toggleButton}>
+                {item.label}
+              </ToggleButton>
+            )
+          })}
+            {/* <ToggleButton value="all" aria-label="Both Raster & Vector" className={classes.toggleButton}>
               All
             </ToggleButton>
             <ToggleButton  value="raster" aria-label="raster" className={classes.toggleButton}>
@@ -55,10 +51,12 @@ export default function ToggleButtonNotEmpty() {
             </ToggleButton>
             <ToggleButton  value="vector" aria-label="Vector" className={classes.toggleButton}>
               Vector
-            </ToggleButton> 
+            </ToggleButton>  */}
           </ToggleButtonGroup>
         </div>
       </Grid>
     </Grid>
   );
 }
+
+export default ThreeWaySwitch

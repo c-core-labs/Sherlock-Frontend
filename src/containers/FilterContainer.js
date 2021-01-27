@@ -5,7 +5,7 @@ import PlatformFilter from '../components/PlatformFilter'
 import FilterPopperContainer from './FilterPopperContainer'
 import FilterListIcon from '@material-ui/icons/FilterList';
 import FilterModal from '../components/FilterModal'
-import ThreeWaySwitch from '../components/ThreeWaySwitch'
+import ThreeWaySwitchContainer from '../containers/ThreeWaySwitchContainer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ const FilterContainer = () => {
           <PlatformFilter />
         </FilterPopperContainer>
       </Grid>
-      <Grid item><ThreeWaySwitch /></Grid>
+      <Grid item><ThreeWaySwitchContainer /></Grid>
       {/* TODO: Resolution Filter */}
       {/* TODO: Public/Private Data Filter */}
     </Grid>

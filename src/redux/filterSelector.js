@@ -12,6 +12,9 @@ export const getActiveFilters = createSelector([filters], filter => {
 })
 
 export const getDataType = createSelector([formatFilter], format => {
-    
     return format.dataType === 'all' ? ['raster', 'vector'] : [format.dataType]
+})
+
+export const switchDataType = createSelector([formatFilter], format => {
+    return format
 })
