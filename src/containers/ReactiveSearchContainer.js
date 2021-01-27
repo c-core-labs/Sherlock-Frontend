@@ -24,9 +24,9 @@ function ReactiveSearchContainer () {
         bool: {
           must: [
             {
-              "bool": {
-                "minimum_should_match": 1,
-                "should": [
+              bool: {
+                minimum_should_match: 1,
+                should: [
                   {
                     terms: { 'stac_extensions': extensions }
                   },
@@ -34,10 +34,10 @@ function ReactiveSearchContainer () {
                   //   terms: { 'properties.meta:data_types': dataFilter }
                   // },   
                   {
-                    "bool": {
-                      "must_not": {
-                        "exists": {
-                          "field": "stac_extensions"
+                    bool: {
+                      must_not: {
+                        exists: {
+                          field: "stac_extensions"
                         }
                       }
                     }
