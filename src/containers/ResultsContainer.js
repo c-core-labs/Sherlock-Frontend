@@ -18,7 +18,7 @@ const Results = ({ data, toggleTopic, currentTopics }) => (
   <div className='result-list'>
     <SelectedFilters className='m1' />
     <ReactiveList
-      stream={true}
+      stream={false}
       componentId='results'
       dataField='name'
       renderItem={(data) => <ResultItem data={data} key={data.id} />}
