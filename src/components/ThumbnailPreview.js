@@ -7,7 +7,6 @@ import ImageSearchOutlinedIcon from '@material-ui/icons/ImageSearchOutlined';
 const ThumbnailPreview = (props) => {
 
   const [isOpen, setIsOpen] = useState(false)
-
   const values = Object.values(props.assets)
   const hasRole = values.find(asset => asset.roles && asset.roles.includes('thumbnail'))
 

@@ -25,4 +25,4 @@ export const getMapBoundsDebounced = createSelector([getMapBounds], bounds => {
 
 export const getSelectedItem = createSelector([getHighlighted], item => {
   return item
-})
+}) 
