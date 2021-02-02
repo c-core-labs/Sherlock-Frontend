@@ -21,11 +21,12 @@ function MapContainer ({ children }) {
   }, [dispatch])
 
   function handleClick (props) {
-    if (props !== undefined && props.features && props.features[0].properties.datetime) {
-      let newItem = props.features[0]
-
-      dispatch(mapDuck.actions.setHighlightedMapItem(newItem))
+    let newItem = null
+    if (props !== undefined && props.features[0] && props.features[0].properties.datetime) {
+      newItem = props.features[0] 
     }
+
+    dispatch(mapDuck.actions.setHighlightedMapItem(newItem))
   }
 
   return (

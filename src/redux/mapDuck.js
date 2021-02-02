@@ -89,7 +89,7 @@ function setHighlightedMapItem(state, action) {
   let newItem = item ? item : null
   
   // If there is no 'id' property (which there isn't if a map polygon has been selected), set it from source property.
-  if (!newItem.id){
+  if (newItem && !newItem.id){
     newItem.id = newItem.source
   }
   

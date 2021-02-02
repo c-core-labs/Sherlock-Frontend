@@ -8,9 +8,6 @@ import { mapVariables } from '../theme'
 function ReactiveLayersContainer () {
   const reactiveContext = useContext(ReactReduxContext)
   const selectedItem = useSelector(getSelectedItem)
-
-  console.log('RLC Render:', selectedItem)
-
   const hits = reactiveContext.storeState.hits.results
     ? reactiveContext.storeState.hits.results.hits
     : []
