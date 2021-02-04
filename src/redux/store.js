@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import mapDuck from './mapDuck'
 import filterDuck from './filterDuck'
 import dataTypeDuck from './dataTypeDuck'
+import authDuck from './authDuck'
 
 const reducer = combineReducers({
     map: mapDuck.reducer,
     filters: filterDuck.reducer,
-    dataType: dataTypeDuck.reducer
+    dataType: dataTypeDuck.reducer,
+    auth: authDuck.reducer
   })
   
   const store = configureStore({

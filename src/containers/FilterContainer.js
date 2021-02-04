@@ -4,7 +4,7 @@ import CloudCoverFilter from '../components/CloudCoverFilter'
 import PlatformFilter from '../components/PlatformFilter'
 import FilterPopperContainer from './FilterPopperContainer'
 import FilterListIcon from '@material-ui/icons/FilterList';
-import FilterModal from '../components/FilterModal'
+import FilterDialogModalContainer from './FilterDialogModalContainer'
 import ThreeWaySwitchContainer from '../containers/ThreeWaySwitchContainer'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +22,10 @@ const FilterContainer = () => {
           <FilterListIcon/>
         </Box>
       </Grid>
-      <Grid item><FilterModal /></Grid>
+      <Grid item>
+        {/* <FilterModal /> */}
+        <FilterDialogModalContainer />
+      </Grid>
       <Grid item>
         <FilterPopperContainer label="Cloud Cover">
           <CloudCoverFilter />
