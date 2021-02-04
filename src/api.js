@@ -2,56 +2,63 @@ import axios from 'axios'
 import { apiUrl } from './config'
 
 // request intercepter
-// TODO get token from state.
-axios.interceptors.request.use(
-  config => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-)
+// TODO: get token from state.
+// TODO: Update to es2016 syntax
+  // axios.interceptors.request.use(
+  // config => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     config.headers.common["Authorization"] = `Bearer ${token}`;
+  //   }
+  //   return config;
+  // },
+  // error => {
+  //   return Promise.reject(error);
+  // }
+  // )
 
-// response interceptor 
-axios.interceptors.response.use(
-  response => {
-    if (response.data && response.data.status === 200 || response.data.status === 201) {
-      return Promise.resolve(response);
-    } else {
-      return Promise.reject(response);
-    }
-  },
+  // // response interceptor 
+  // axios.interceptors.response.use(
+  // response => {
+  //   if (response.data) {
+  //     if (response.data.status === 200 || response.data.status === 201) {
+  //       return Promise.resolve(response);
+  //     } else {
+  //       return Promise.reject(response);
+  //     }
+  //   } else {
+  //     return Promise.resolve.prototype(response)
+  //   }
+  // },
 
-  // Default Error Handling for common error codes.
-  // TODO: Add notifications / logic to these
-  error => {
-    if (error.status) {
-      switch (error.status) {
-        case 400: // Invalid request
-          // Generic error message
-          // Log error.
-          return Promise.reject(error)       
-        case 401: // Unauthorised - authntication possible - redirect to login
-          // Show login modal, or redirect
-          return Promise.reject(error)
-        case 403: // Forbidden - display alert
-          // Display error - " yOu don't have permission to access this resource..."
-          return Promise.reject(error)
-        case 404: // Not found
-          // Display an error message "Resource not found blah blah..."
-          Promise.reject(error)
-          break
-        default:
-          return Promise.reject(error.response);
-      }
-      return Promise.reject(error.response);
-    }
-  }
-)
+  // // Default Error Handling for common error codes.
+  // // TODO: Add notifications / logic to these
+  // error => {
+  //   if (error.status) {
+  //     switch (error.status) {
+  //       case 400: // Invalid request
+  //         // Generic error message
+  //         // Log error.
+  //         return Promise.reject(error)       
+  //       case 401: // Unauthorised - authntication possible - redirect to login
+  //         // Show login modal, or redirect
+  //         return Promise.reject(error)
+  //       case 403: // Forbidden - display alert
+  //         // Display error - " yOu don't have permission to access this resource..."
+  //         return Promise.reject(error)
+  //       case 404: // Not found
+  //         // Display an error message "Resource not found blah blah..."
+  //         Promise.reject(error)
+  //         break
+  //       default:
+  //         return Promise.reject(error.response);
+  //     }
+  //     return Promise.reject(error.response);
+  //   }
+  // }
+// )
+
+// TODO: 
 
 const api = {
 
