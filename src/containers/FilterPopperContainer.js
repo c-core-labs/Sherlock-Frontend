@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const FilterPopover = (props) =>{
+const FilterPopover = ({label, children}) => {
   const classes = useStyles()
   const [showPopper, setShowPopper] = useState(false);
   const buttonRef = useRef(null);
@@ -55,7 +55,7 @@ const FilterPopover = (props) =>{
   return (
     <Fragment>
       <button type="button" ref={buttonRef} className={classes.buttonStyle} onClick={() => setShowPopper(!showPopper) }>
-        {props.label}
+        {label}
       </button>
       <div
         style={{display: showPopper ? 'block' : 'none'}}
@@ -64,7 +64,7 @@ const FilterPopover = (props) =>{
         // style={styles.popper} TODO: check styles for additional alignment properties.
         {...attributes.popper}>
         <Paper className={classes.cloudFilter}>
-          {props.children}
+          {children}
         </Paper>
       </div>
     </Fragment>

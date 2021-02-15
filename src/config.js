@@ -12,8 +12,8 @@ export const apiUrl = process.env.REACT_APP_API_URL
 
 // Default map values
 export const defaultViewport = {
-  latitude: 53.28,
-  longitude: 0,
+  latitude: 65.28,
+  longitude: -100,
   zoom: 2,
   width: 250,
   height: 250
