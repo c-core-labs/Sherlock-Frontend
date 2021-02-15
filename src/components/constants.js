@@ -15,7 +15,7 @@ export const sortOptions = [
       sortBy: 'asc'
     }
   ]
-  
+
   export const repoActiveDropdownData = [
     { start: 'now-1M', end: 'now', label: 'Last 30 days' },
     { start: 'now-6M', end: 'now', label: 'Last 6 months' },
