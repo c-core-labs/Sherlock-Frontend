@@ -1,76 +1,56 @@
-# Sherlock Frontend
+# Sherlock Geospatial Search and Discovery (Front End)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/791fc191-034c-429e-b604-19e1f265d1ac/deploy-status)](https://app.netlify.com/sites/sherlock-frontend/deploys)
 
 https://sherlock-frontend.c-core.app/
 
-# Getting Started with Create React App
+## About the project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sherlock is a geospatial search and discovery tool based on Elastic Search, STAC, and React.
 
-## Available Scripts
+This project exists in three parts:
 
-In the project directory, you can run:
+1. This front end application
+2. A compatible Elastic search index, [documented here]()
+3. The STAC api [found here](https://github.com/c-core-labs/stac-api)
+   
+This project was built with the support of the [NRCAN GeoConnections program](https://www.nrcan.gc.ca/nrcan/transparency/reporting-accountability/plans-performance-reports/geoconnections-program-voted/20876)
 
-### `yarn start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A demo of this project is available [here](https://sherlock-frontend.c-core.app/?CloudFilter=%5B0%2C100%5D): 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Out index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
 
-### `yarn test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites:
 
-### `yarn build`
+1. STAC-API
+   
+   The STAC API is available [here](https://github.com/c-core-labs/stac-api).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. A compliant Elasticsearch Index, index documentation available here.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To install the front end application:
 
-### `yarn eject`
+1. Clone this repo
+2. Set env variables, an env.example file has been provided
+3. In the project directory you can run:
+   
+    `yarn start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    Launches the test runner in the interactive watch mode.\
+    See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    `yarn build`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    Launches the test runner in the interactive watch mode.\
+    See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    For full instructions, please see the [documentation in create react app](https://github.com/facebook/create-react-app)
 
-## Learn More
+4. Happy searching! 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
