@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Box, Card, CardContent, makeStyles, Typography, Link, Grid } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
 import MapOutlined from '@material-ui/icons/MapOutlined'
-import CardMedia from '@material-ui/core/CardMedia'
 
 // Components
 import ItemKeywords from './ItemKeywords'
@@ -133,11 +132,6 @@ const ResultItem = (props) => {
         classes={{
           title: classes.cardHeader
         }}
-      />
-      <CardMedia
-        className={classes.thumbnail}
-        image="./blank.png"
-        title=""
       />
       <CardContent className={classes.cardContent}>
         <Box className={classes.summary}>
