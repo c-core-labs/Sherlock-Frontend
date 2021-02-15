@@ -45,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 const FilterContent = ({classes, filters}) => {
   return (
-    defaultFilters.map(item => {
+    defaultFilters.map((item, index) => {
       return (
-        <Grid container className={classes.itemRow}>
+        <Grid container className={classes.itemRow} key={index}>
           <Box item className={classes.labelItem}>
             <Typography>{item.title}</Typography>
             <Typography className={classes.subheading}>{item.subtitle}</Typography>

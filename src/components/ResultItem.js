@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Box, Card, CardContent, makeStyles, Typography, Link, Grid } from '@material-ui/core'
 import CardHeader from '@material-ui/core/CardHeader'
 import MapOutlined from '@material-ui/icons/MapOutlined'
-import CardMedia from '@material-ui/core/CardMedia'
 
 // Components
 import ItemKeywords from './ItemKeywords'
@@ -100,8 +99,8 @@ const ResultItem = (props) => {
   ]
 
   const metaTags = metaTypes.filter( item => typeof(item.value) != "undefined" )
-  const title = () => props.data.properties.title ? props.data.properties.title : props.data.collection
-  const description = () => props.data.properties.description ? props.data.properties.description : props.data.properties.datetime
+  const title = (() => props.data.properties.title ? props.data.properties.title : props.data.collection)()
+  const description = (() => { return props.data.properties.description ? props.data.properties.description : props.data.properties.datetime })()
   
   const highlightItem = selectedItem && selectedItem.id === props.data.id
   
@@ -113,10 +112,10 @@ const ResultItem = (props) => {
     executeScroll()
   }
 
-  const readableDate = () => {
+  const readableDate = (() => {
     const date = new Date(props.data.properties.datetime)
     return date.toLocaleDateString("en-US")
-  }
+  })()
 
   return (
     <Card
@@ -128,20 +127,15 @@ const ResultItem = (props) => {
       })}
     >
       <CardHeader
-        title={title()}
-        subheader={readableDate()}
+        title={title}
+        subheader={readableDate}
         classes={{
           title: classes.cardHeader
         }}
       />
-      <CardMedia
-        className={classes.thumbnail}
-        image="./blank.png"
-        title=""
-      />
       <CardContent className={classes.cardContent}>
         <Box className={classes.summary}>
-          <Typography variant="body2" color="initial">{description()}</Typography>
+          <Typography variant="body2" color="initial">{description}</Typography>
         </Box>
         <Box className={classes.keywordContainer}>
           <ItemKeywords data={props.data.properties.keywords} key={props.data.id} />
@@ -157,7 +151,7 @@ const ResultItem = (props) => {
           <Grid item className={classes.actionIcon}>
             <ThumbnailPreview assets={props.data.assets} />
           </Grid>
-          <Link href="#" onClick={handleSelect} item className={classes.actionIcon}>
+          <Link onClick={handleSelect} item className={classes.actionIcon}>
             <MapOutlined className={classes.mapHighlightIcon} />
           </Link>
           <Grid item className={classes.actionIcon}>
