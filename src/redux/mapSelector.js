@@ -14,9 +14,23 @@ export const getCoordinates = createSelector([getViewport], viewport => {
   return { latitude, longitude }
 })
 
+function sanitizeCoordinate(coordinate) {
+  if (coordinate < -180) {
+    return 180 + (coordinate % 180)
+  } else if (coordinate > 180) {
+    return -180 + (coordinate % 180)
+  } else {
+    return coordinate
+  }
+}
+
 export const getMapBounds = createSelector([getViewport], viewport => {
   const { width, height, latitude, longitude, zoom } = viewport
-  return geoViewport.bounds([longitude, latitude], (zoom * 1.05 ), [width, height], 512)
+
+  const bounds = geoViewport.bounds([longitude, latitude], (zoom * 1.05 ), [width, height], 512)
+  const sanitizedBounds = bounds.map(coordinate => sanitizeCoordinate(coordinate))
+
+  return sanitizedBounds
 })
 
 export const getMapBoundsDebounced = createSelector([getMapBounds], bounds => {
@@ -25,4 +39,4 @@ export const getMapBoundsDebounced = createSelector([getMapBounds], bounds => {
 
 export const getSelectedItem = createSelector([getHighlighted], item => {
   return item
-}) 
+})
