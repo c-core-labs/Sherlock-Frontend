@@ -1,0 +1,45 @@
+
+/*  Text search box */
+.es-form .form-search {
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  height: 35px
+}
+
+.DayPickerInput {
+  /* border-radius:5px */
+}
+
+.es-form .css-ln922y-Flex .css-1kls8xb-Flex-leftLabel-Flex .e1hwwpu60 {
+  background-color: #fafafa;
+
+}
+
+/* Container element for each input */
+.es-form [class*="-Flex-leftLabel-Flex"] {
+  border-radius:5px;
+  border: 1px solid #d8d8d8;
+}
+
+/* Overrides inline style for input background colour*/
+.es-form [class*="-Flex-leftLabel-Flex"][style] {
+  background-color: #fafafa;
+}
+
+/* Shaded inputs within bordered element for date range selector. 
+  Radius must be equal or greater to that of input to eliminate masking */
+[class*="-DateContainer-input-DateContainer"] [class*="-Flex-leftLabel-Flex e1hwwpu60"] .DayPickerInput input {
+  border-radius: 6px;
+  background-color: #fafafa;
+  height: 35px
+}
+
+/* results list */
+
+.result-list {
+  margin: 8px;
+}
+
+.result-item {
+  
+}
