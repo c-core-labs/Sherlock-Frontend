@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     display: 'flex',
     flexDirection: 'column',
-    padding: '10px 20px 12px 20px'
+    padding: '10px 15px 12px 15px'
   },
   mapWindow: {
     width: 'auto',
@@ -97,6 +97,22 @@ const useStyles = makeStyles((theme) => ({
   resultsSubWindow: {
     overflow: 'auto',
     height: `calc(100vh - ${themeVariables.headerHeight} - 48px)`
+  },
+  // TODO: Componentise this label
+  mapTipContainer: {
+    width: 'auto',
+    position: 'absolute',
+    top: '95px',
+    right: '660px',
+    zIndex: '1000',
+    opacity: '0.5',
+    backgroundColor: 'white'
+  },
+  mapTipText: {
+    color: 'black',
+    paddingLeft: '7px',
+    paddingRight: '7px',
+    fontSize: '0.8em'
   }
 }))
 
@@ -158,6 +174,9 @@ const App = () => {
                       className="es-form"
                       />
                 </Box>
+              </Box>
+              <Box className={classes.mapTipContainer}>
+                <Typography className={classes.mapTipText}>Pan & Zoom map to set AOI</Typography>
               </Box>
               <MapContainer>
                 <ReactiveLayersContainer />
