@@ -21,6 +21,10 @@
   border: 1px solid #d8d8d8;
 }
 
+.search-icon {
+  margin: 0 0 5px 0
+}
+
 /* Overrides inline style for input background colour*/
 .es-form [class*="-Flex-leftLabel-Flex"][style] {
   background-color: #fafafa;
