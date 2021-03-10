@@ -176,7 +176,7 @@ const App = () => {
                 </Box>
               </Box>
               <Box className={classes.mapTipContainer}>
-                <Typography className={classes.mapTipText}>Pan & Zoom map to set AOI</Typography>
+                <Typography className={classes.mapTipText}>Pan & zoom map to set AOI</Typography>
               </Box>
               <MapContainer>
                 <ReactiveLayersContainer />
