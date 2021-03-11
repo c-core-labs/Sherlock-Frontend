@@ -31,7 +31,7 @@ Out index contains links to our own publically available assets, the Landsat STA
 
    The STAC API is available [here](https://github.com/c-core-labs/stac-api).
 
-2. A compliant Elasticsearch Index, index documentation available here.
+2. A compliant Elasticsearch Index, an example index schema available [here](examples/index.json).
 
 ### Installation:
 
