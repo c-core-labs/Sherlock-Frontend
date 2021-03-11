@@ -8,11 +8,12 @@ https://sherlock-frontend.c-core.app/
 
 Sherlock is a geospatial search and discovery tool based on Elastic Search, STAC, and React.
 
-This project exists in three parts:
+This project exists in four parts:
 
 1. This front end application
 2. A compatible Elastic search index, [documented here]()
 3. The STAC api [found here](https://github.com/c-core-labs/stac-api)
+4. The Sherlock Irregulars - metadata conversion framwork to bring non-STAC metadata into the STAC. [View on Github](https://github.com/c-core-labs/sherlock-irregulars)
 
 This project was built with the support of the [NRCAN GeoConnections program](https://www.nrcan.gc.ca/nrcan/transparency/reporting-accountability/plans-performance-reports/geoconnections-program-voted/20876)
 
