@@ -2,7 +2,11 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/791fc191-034c-429e-b604-19e1f265d1ac/deploy-status)](https://app.netlify.com/sites/sherlock-frontend/deploys)
 
-https://sherlock-frontend.c-core.app/
+### Search Application:
+https://sherlock-search.c-core.app/
+
+### Project Information Page
+https://sherlock.c-core.app/
 
 ## About the project
 
@@ -19,7 +23,7 @@ This project was built with the support of the [NRCAN GeoConnections program](ht
 
 ## Demo
 
-A demo of this project is available [here](https://sherlock-frontend.c-core.app/?CloudFilter=%5B0%2C100%5D):
+A demo of this project is available [here](https://sherlock-search.c-core.app/?CloudFilter=%5B0%2C100%5D):
 
 Out index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
 
