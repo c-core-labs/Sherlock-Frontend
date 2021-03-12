@@ -23,9 +23,9 @@ This project was built with the support of the [NRCAN GeoConnections program](ht
 
 ## Demo
 
-A demo of this project is available [here](https://sherlock-search.c-core.app/?CloudFilter=%5B0%2C100%5D):
+A demo of this project is available [here](https://sherlock-search.c-core.app/):
 
-Out index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
+Our index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
 
 ## Getting Started
 
@@ -33,9 +33,9 @@ Out index contains links to our own publically available assets, the Landsat STA
 
 1. STAC-API
 
-   The STAC API is available [here](https://github.com/c-core-labs/stac-api).
+   Arturo STAC API is available [here](https://github.com/stac-utils/arturo-stac-api).
 
-2. A compliant Elasticsearch Index, an example index schema available [here](examples/index.json).
+2. A compliant Elasticsearch Index. An example index schema available [here](examples/index.json).
 
 ### Installation:
 
