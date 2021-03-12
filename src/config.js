@@ -1,4 +1,3 @@
-
 // Mapbox
 export const mapboxAccessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
@@ -7,6 +6,9 @@ export const es_key = process.env.REACT_APP_ES_KEY
 export const es_index= process.env.REACT_APP_ES_INDEX
 export const es_type = process.env.REACT_APP_ES_TYPE
 export const es_url = process.env.REACT_APP_ES_URL
+
+// Google Aalytics
+export const measurementId = process.env.REACT_APP_MEASUREMENT_ID
 
 // Default map values
 export const defaultViewport = {
