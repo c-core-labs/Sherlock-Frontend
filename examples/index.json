@@ -1,0 +1,86 @@
+{
+    "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
+    },
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "keyword",
+                "index":false
+            },
+            "groups": {
+              "type": "keyword"
+            },
+            "stac_version": {
+                "type": "keyword"
+            },
+            "bbox": {
+                "type": "geo_shape"
+            },
+            "geometry": {
+                "enabled": false
+            },
+            "collection": {
+                "type": "keyword"
+            },
+            "links": {
+                "type": "object",
+                "enabled": false
+            },
+            "type": {
+                "enabled": false
+            },
+            "stac_extensions": {
+                "type": "keyword",
+                "null_value": "NULL"
+            },
+            "properties": {
+                "properties": {
+                    "datetime": {
+                        "type": "date"
+                    },
+                    "start_datetime": {
+                        "type": "date"
+                    },
+                    "end_datetime": {
+                        "type": "date"
+                    },
+                    "created": {
+                        "type": "date"
+                    },
+                    "updated": {
+                        "type": "date"
+                    },
+                    "title": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "license": {
+                        "type": "keyword"
+                    },
+                    "platform": {
+                        "type": "keyword"
+                    },
+                    "constellation": {
+                        "type": "keyword"
+                    },
+                    "mission": {
+                        "type": "keyword"
+                    },
+                    "number": {
+                        "type": "float"
+                    },
+                    "eo:cloud_cover": {
+                        "type": "float"
+                    },
+                    "meta:area": {
+                        "type": "float"
+                    }
+                }
+            }
+        }
+    }
+}
