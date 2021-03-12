@@ -63,5 +63,5 @@ To install the front end application:
 Sherlock is designed to be interoperable with containerized add-on tools to facilitate common geospatial data operations in the cloud.
 
 * [Sherlock Wind](https://github.com/c-core-labs/sherlock-wind) - Retrieve ERA5 reanalysis wind vector data from a STAC item or Sherlock identifier.
-* [Sherlock COG](#) - Convert raster data to Cloud Optimized GeoTIFF from a STAC item or Sherlock identifier.
+* [Sherlock COG](https://github.com/c-core-labs/sherlock-cogs) - Convert raster data to Cloud Optimized GeoTIFF from a STAC item or Sherlock identifier.
 * [Sherlock SNAP](https://github.com/c-core-labs/sherlock-snap) - Process synthetic aperture radar (SAR) data with the ESA's SNAP Toolbox from a STAC item or Sherlock identifier.
