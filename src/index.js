@@ -7,7 +7,7 @@ import ReactGA from 'react-ga'
 
 import { measurementId } from './config'
 
-ReactGA.initialize(measurementId, { debug: false })
+ReactGA.initialize(measurementId, { debug: false, siteSpeedSampleRate: 100 })
 ReactGA.pageview(window.location.pathname + window.location.search)
 
 ReactDOM.render(
