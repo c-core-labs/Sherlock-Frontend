@@ -23,9 +23,9 @@ This project was built with the support of the [NRCAN GeoConnections program](ht
 
 ## Demo
 
-A demo of this project is available [here](https://sherlock-search.c-core.app/?CloudFilter=%5B0%2C100%5D):
+A demo of this project is available [here](https://sherlock-search.c-core.app/):
 
-Out index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
+Our index contains links to our own publically available assets, the Landsat STAC, and the ESA Coperincus mission catalog.
 
 ## Getting Started
 
