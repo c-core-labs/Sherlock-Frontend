@@ -3,7 +3,7 @@ import { DataSearch } from '@appbaseio/reactivesearch';
 import { useSelector } from 'react-redux'
 
 import { getMapBoundsDebounced } from '../redux/mapSelector'
-import { getActiveFilters, getDataType } from '../redux/filterSelector'
+import { getActiveFilters, getDataType, keywords } from '../redux/filterSelector'
 import useDebounce from '../hooks/useDebounce'
 
 
@@ -12,8 +12,19 @@ function ReactiveSearchContainer () {
   const bbox = useSelector(getMapBoundsDebounced)
   const dataFilter = useSelector(getDataType)
   const dbbox = useDebounce(bbox, 800)
-
+  const keyword = useSelector(keywords)
   const extensions = useSelector(getActiveFilters)
+
+  const [qValue, setqValue] = React.useState('')
+
+  React.useEffect(()=>{
+    setqValue(keyword)
+  }, [keyword])
+
+  const handleChange = (value, triggerQuery) => {
+    setqValue(value)
+    triggerQuery()
+  }
 
   const geoQuery = (value) => {
     let query = {
@@ -71,12 +82,11 @@ function ReactiveSearchContainer () {
         }
       }
     }
-    
     return query
   } 
 
   return (
-      <DataSearch
+    <DataSearch
       customQuery={geoQuery}
       dataField={[
         'properties.title',
@@ -96,8 +106,10 @@ function ReactiveSearchContainer () {
       innerClass={{
         input: 'form-search',
       }}
+      value={qValue}
+      onChange={handleChange}
+      // onKeyPress={handleKey}
     />
-
   )
 }
 

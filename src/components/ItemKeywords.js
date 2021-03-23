@@ -1,6 +1,8 @@
 import { Box, makeStyles } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip'
 import { secondary, themeVariables } from '../theme'
+import keywordDuck from '../redux/keywordDuck'
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,29 +20,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ItemKeywords = (props) => {
+  const dispatch = useDispatch()
+
+  const handleSelect = (keyword) => {
+    dispatch(keywordDuck.actions.setKeyword(keyword))
+  }
+
   const classes = useStyles()
-  if (!props.data) {
-    return (
-      <Box></Box>
-    )
-  } else {
-    return (
-      <Box component="ul" className={classes.root}>
-      {props.data.map((keyword, index) => {
-        return (
-          <li key={index}>
+  return (
+    props.data &&
+    <Box component="ul" className={classes.root}>
+    {props.data.map((keyword, index) => {
+      return (
+        <li key={index}>
           <Chip
             className={classes.chip}
             label={keyword}
-            clickable
+            size='small'
+            clickable={true}
+            onClick={() => handleSelect(keyword)}
           />
-          </li>
-        )}
+        </li>
       )}
-      </Box>
-    )
-  }
-
+    )}
+    </Box>
+  )
 }
 
 export default ItemKeywords
