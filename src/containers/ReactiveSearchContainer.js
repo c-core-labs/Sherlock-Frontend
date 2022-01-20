@@ -19,27 +19,6 @@ function ReactiveSearchContainer () {
     let query = {
       query: {
         bool: {
-          must: [
-            {
-              bool: {
-                minimum_should_match: 1,
-                should: [
-                  {
-                    terms: { 'stac_extensions': extensions }
-                  },
-                  {
-                    bool: {
-                      must_not: {
-                        exists: {
-                          field: "stac_extensions"
-                        }
-                      }
-                    }
-                  }
-                ]
-              },
-            }         
-          ],
           should: [
             {
               multi_match: {
@@ -49,8 +28,8 @@ function ReactiveSearchContainer () {
                   'properties.description',
                   'properties.keywords',
                 ]
-              }
-            }
+              },
+            },
           ],
           filter: [
             {
@@ -64,19 +43,21 @@ function ReactiveSearchContainer () {
                 }
               }
             },
-            {
-              terms: { 'properties.meta:asset_types': dataFilter }
-            },   
           ]
         }
       }
     }
-    
+
+    // terms cannot be empty, so we conditionally add them if not empty
+    if (dataFilter && dataFilter.length) {
+      query.query.bool.filter.push({terms: { 'properties.meta:asset_types': dataFilter }})
+    }
+
     return query
-  } 
+  }
 
   return (
-      <DataSearch
+    <DataSearch
       customQuery={geoQuery}
       dataField={[
         'properties.title',

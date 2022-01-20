@@ -14,14 +14,15 @@ const onResultStats = (results, time) => (
 )
 
 const Results = ({ data, toggleTopic, currentTopics }) => (
-
   <div className='result-list'>
     <SelectedFilters className='m1' />
     <ReactiveList
       stream={false}
       componentId='results'
       dataField='name'
-      renderItem={(data) => <ResultItem data={data} key={data.id} />}
+      renderItem={(data) => {
+        return (<ResultItem data={data} key={data.id} />)
+      }}
       onResultStats={onResultStats}
       react={{
         and: [
