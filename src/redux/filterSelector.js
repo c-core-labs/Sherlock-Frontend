@@ -17,7 +17,7 @@ export const getDataType = createSelector([formatFilter], format => {
     if (!format.dataType) {
       return []
     }
-    return format.dataType === 'all' ? ['raster', 'vector'] : [format.dataType]
+    return format.dataType === 'all' ? [] : [format.dataType]
 })
 
 export const switchDataType = createSelector([formatFilter], format => {
