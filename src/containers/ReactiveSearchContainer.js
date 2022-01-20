@@ -3,7 +3,7 @@ import { DataSearch } from '@appbaseio/reactivesearch';
 import { useSelector } from 'react-redux'
 
 import { getMapBoundsDebounced } from '../redux/mapSelector'
-import { getActiveFilters, getDataType } from '../redux/filterSelector'
+import { getDataType } from '../redux/filterSelector'
 import useDebounce from '../hooks/useDebounce'
 
 
@@ -12,8 +12,6 @@ function ReactiveSearchContainer () {
   const bbox = useSelector(getMapBoundsDebounced)
   const dataFilter = useSelector(getDataType)
   const dbbox = useDebounce(bbox, 800)
-
-  const extensions = useSelector(getActiveFilters)
 
   const geoQuery = (value) => {
     let query = {
