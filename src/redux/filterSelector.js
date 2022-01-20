@@ -12,6 +12,11 @@ export const getActiveFilters = createSelector([filters], filter => {
 })
 
 export const getDataType = createSelector([formatFilter], format => {
+    // If data type null, return empty array.
+    // Null values not supported in Elasticserach terms filter
+    if (!format.dataType) {
+      return []
+    }
     return format.dataType === 'all' ? ['raster', 'vector'] : [format.dataType]
 })
 
